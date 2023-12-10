@@ -7,6 +7,12 @@ function CourseDropdown({lable ="",course,setCourse,setlecture,setTutorial,setPr
 
 const settingCourse = (selectedOption)=>{
   setCourse(selectedOption.label)
+  setlecture(selectedOption.lecture)
+  setPractical(selectedOption.practical)
+  setTutorial(selectedOption.tutorial)
+  setSelfStudy(selectedOption.selfStudy)
+  setCredits(selectedOption.credits)
+  // console.log(selectedOption.lecture)
   // console.log(selectedOption.ltpse)
 
 }
@@ -29,7 +35,7 @@ const defaultAY = courseData[Number(courseData.length)-1]
         styles={{  
           control: (baseStyles, state) => ({
             ...baseStyles,
-            borderColor: state.isFocused ? 'grey' : 'red',
+            borderColor: state.isFocused ? 'grey' : 'blueviolet',
             width: '300px',
             
           }),

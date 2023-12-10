@@ -36,7 +36,7 @@ const defaultAY = array[Number(array.length)-1]
         styles={{
           control: (baseStyles, state) => ({
             ...baseStyles,
-            borderColor: state.isFocused ? 'grey' : 'red',
+            borderColor: state.isFocused ? 'grey' : 'blueviolet',
             width: '300px',
             
           }),

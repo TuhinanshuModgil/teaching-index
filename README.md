@@ -9,12 +9,13 @@ Currently, two official plugins are available:
 
 # Learned Things
 1. How to use the react-select dependency 
+2. To add custom width sizes or custom sizes to any component use the format w-[300px] where 300px reresents the custom value with unit
 ## react-select dependency
 1. We have to pass the options to the select component as an array that need to have two fields value and label 
 2. The label fied is the one that will be displayed as the options in the list 
 3. The value field can be used to search the list 
 4. We can also add other key value pairs besides the value and label but they are a must have
-    
+
 # AcademicicYear Comoponent
 1. The component uses the react-select to create a dropdown menu to choose the academic year
 2. It takes the alreay setted academic year and the setAcademic year as its props to be able to change the academic year when a new academic year is selected
