@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import array from "./academicYear"
+import array from "./Database/ayData";
 import Select from 'react-select';
 
 
-function Dropdown({lable ="",acadYear,setAcadYear}) {
+function AcademicYear({lable ="",acadYear,setAcadYear}) {
 
 // the Data for the academic year is taken from the array in the acadmeicYear.js file
 // I will try to move it to the backend once the database is set up
@@ -22,8 +22,8 @@ const defaultAY = array[Number(array.length)-1]
 
   return (
    
-      <div className='flex gap-8 items-center'>
-      <h2>{lable}</h2>
+      <div className='flex items-center p-4'>
+      <h2 className='w-1/4'>{lable}</h2>
       
 
       {/* Select component is taken from the react-select package
@@ -61,7 +61,7 @@ const defaultAY = array[Number(array.length)-1]
   )
 }
 
-export default Dropdown
+export default AcademicYear
 
 // -----My previous meathod to take input----
 // {/* <input type="text" name="city" list="cityname" className='p-2 flex items-center' />
