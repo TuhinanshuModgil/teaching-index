@@ -1,11 +1,9 @@
 import { useState } from 'react'
-import './App.css'
-import AcademicYear from './components/AcademicYear'
-import Navbar from './components/Navbar'
-import CourseDropdown from './components/CourseDropdown'
-import NumberSetter from './components/NumberSetter'
+import AcademicYear from './AcademicYear'
+import CourseDropdown from './CourseDropdown'
+import NumberSetter from './NumberSetter'
 
-function App() {
+function CalculatorPage() {
   const currentAcadYear = "AY 2023 Sem II"
 
   // stating all the variables on which the formula dependends
@@ -30,12 +28,13 @@ function App() {
   
   return (
    <>
-   <Navbar/>
+   
    <div className='py-10 px-6'>
     <h1 className='text-4xl mb-5'>Calculator</h1>
     
     <AcademicYear lable="Academic Year" acadYear={acadYear} setAcadYear={setAcadYear}/>
-    <CourseDropdown lable='Course' 
+    <CourseDropdown 
+    lable='Course' 
     setCourse={setCourse} 
     setlecture={SetLecture} 
     setTutorial={SetTutorial} 
@@ -62,4 +61,4 @@ function App() {
   )
 }
 
-export default App
+export default CalculatorPage
