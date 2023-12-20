@@ -18,6 +18,11 @@ function Navbar() {
     <div className='flex gap-8 items-center	'>
       <img src={accountImage} alt="image" className='w-10 h-10 object-cover rounded-full	' />
       <h3>Dr. Zin Chang Woo</h3>
+       
+      <h1>Log-out</h1>
+      <h1>Sign-Up</h1>
+      <h1>Log-in</h1>
+
     </div>
    </header>
    </>
