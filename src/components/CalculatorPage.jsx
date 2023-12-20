@@ -21,7 +21,7 @@ function CalculatorPage() {
   // function that will run when we will click calculate
   // It contains the formula to calculate the teaching Index
   const calculateIndex = ()=>{
-    const formula = (lecture*10 + turorial*7 + practical*5 + selfStudy*1 + credits*5 + courseStrength*0.2)/(faculty)
+    const formula = (lecture*1 + turorial*0.5 + practical*0.5 + courseStrength*0.01)/(faculty)
     setTeachingIndex(formula)
   }
 

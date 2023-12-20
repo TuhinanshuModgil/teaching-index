@@ -1,5 +1,6 @@
 import React from 'react'
 import accountImage from '../../assets/SL.png'
+import { useAuth } from '../Context/AuthContext'
 
 
 function UserTab() {
@@ -28,7 +29,7 @@ function UserTab() {
     //     </div>
 
     // </div>
-
+  const {user} = useAuth()
 
 
   return (
@@ -42,8 +43,8 @@ function UserTab() {
         className="w-16 h-16 rounded-full mr-4 object-cover"
       />
       <div className='px-3 '>
-        <h2 className="text-xl font-bold mb-2 text-gray-700 leading-snug">{"Dr. Zing Chang Woo"}</h2>
-        <p className="text-gray-600 mb-2 leading-snug">{"title"}</p>
+        <h2 className="text-xl font-bold mb-2 text-gray-700 leading-snug">{"Dr. Tuhinanshu"}</h2>
+        <p className="text-gray-600 mb-2 leading-snug">{user && user.email}</p>
         <p className="text-gray-700">User Load: {"3.5"}</p>
       </div>
     </div>
