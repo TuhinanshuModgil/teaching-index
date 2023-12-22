@@ -44,9 +44,15 @@ function CalculatorPage() {
     />
     <NumberSetter label='Strength' number={courseStrength} setNumber={setCourseStrength}/>
     <NumberSetter label='Fuculty' number={faculty} setNumber={setFaculty} />
+
+    <div className='flex flex-row gap-5'>
     <button className='bg-green-700 px-6 py-2 rounded-md shadow-md my-6 font-medium' 
     onClick={calculateIndex}
-    >Calculate</button>
+    >Calculate</button> 
+    <button className='bg-gray-600 px-6 py-2 rounded-md shadow-md my-6 font-medium' 
+    >Save</button>
+    </div>
+    
 
     <h1>{teachingIndex}</h1>
 

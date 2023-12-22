@@ -50,7 +50,7 @@ const defaultAY = array[Number(array.length)-1]
           borderRadius: 0,
           colors: {
             ...theme.colors,
-            primary25: 'hotpink',
+            primary25: 'green',
             primary: 'black',
           },
         })}
