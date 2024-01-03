@@ -29,7 +29,7 @@ function Navbar() {
   };
   return (
    <>
-   <header className='py-6 px-6 flex justify-between items-center border-b-2 border-b-black/10 shadow-md 	'>
+   <header className='py-3 px-6 flex justify-between items-center border-b-2 border-b-black/10 shadow-md 	'>
     <div className='flex gap-8'>
 
       

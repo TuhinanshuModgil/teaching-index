@@ -6,13 +6,14 @@ import {
 } from "react-router-dom";
 import './index.css'
 import Layout from './Layout';
-import CalculatorPage from './components/CalculatorPage';
+import CalculatorPage from './components/Calculator/CalculatorPage';
 import HomePage from './components/HomePage/HomePage';
 import Dashboard from './components/Dashboard/Dashboard';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import { UserContextprovider } from './components/Context/AuthContext';
 import ProtectedRoute from './components/Firebase/protectedRoutes';
+import { LoadContextprovider } from './components/Context/LoadContext';
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,11 @@ const router = createBrowserRouter([
       },
       {
         path: "calculate",
-        element: <ProtectedRoute><CalculatorPage/></ProtectedRoute>
+        element: <ProtectedRoute>
+                  <LoadContextprovider>
+                    <CalculatorPage/>
+                  </LoadContextprovider>
+                 </ProtectedRoute>
       },
       {
         path: "dashboard",

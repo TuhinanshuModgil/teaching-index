@@ -9,7 +9,7 @@ function NumberSetter({label="",number = 25, setNumber}) {
 
   return (
     <>
-    <div className='flex items-center p-4'>
+    <div className='flex items-center p-4 gap-5'>
       <h2 className='w-1/4'>{label}</h2>
       <input type="number"  className='w-[300px] h-[36px] px-3 ' value={number} onChange={settingNumber}/>
 

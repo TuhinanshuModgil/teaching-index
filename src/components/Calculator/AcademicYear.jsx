@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import array from "./Database/ayData";
+import array from "../Database/ayData";
 import Select from 'react-select';
 
 
@@ -22,7 +22,7 @@ const defaultAY = array[Number(array.length)-1]
 
   return (
    
-      <div className='flex items-center p-4'>
+      <div className='flex items-center p-4 gap-5 mb-10'>
       <h2 className='w-1/4'>{lable}</h2>
       
 

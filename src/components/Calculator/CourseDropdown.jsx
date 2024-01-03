@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import courseData from "./Database/courseData";
+import courseData from "../Database/courseData";
 import Select from 'react-select';
 
 
@@ -21,14 +21,14 @@ const defaultAY = courseData[Number(courseData.length)-1]
 
   return (
    
-      <div className='flex items-center p-4'>
+      <div className='flex items-center p-4 gap-5'>
       <h2 className='w-1/4'>{lable}</h2>
       
 
       {/* Select component is taken from the react-select package
       Read the documentation from the react-select on npms website to see how to operate */}
       <Select
-        defaultValue={defaultAY}
+        
         onChange={settingCourse}
         options={courseData}
         placeholder="Select Course"
