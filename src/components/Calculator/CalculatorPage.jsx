@@ -15,11 +15,26 @@ function CalculatorPage() {
 
   function handleAddCourse(){
     addCourses({
-      AY: currentAcadYear,
-      course:"",
+      AY: acadYear,
+      courseName:"",
+      lectures: "",
+      tutorials: "",
+      practicals: "",
       strength: 25,
-      faculty: 1
+      faculty: 1,
+      teachingLoad: 0 
+
     })
+  }
+
+  function handleCalculateTotalIndex(){
+
+    let totalLoad = 0; 
+    for(let i =0; i <courses.length;i++){
+      totalLoad += courses[i].teachingLoad
+    }
+
+    setTeachingIndex(totalLoad)
   }
 
   // function that will run when we will click calculate
@@ -47,19 +62,31 @@ function CalculatorPage() {
    
     {/*Loop and Add TodoItem here */}
     {courses.map((course) => (
-                          <div key={course.id}
-                          className='w-full'
-                          >
-                             <CourseCard/>
-                          </div>
-                        ))}
+      <div key={course.id}
+      className='w-full'
+      >
+        <CourseCard 
+          key={course.id} 
+          cardID={course.id} 
+          cardAcademicYear={course.AY} 
+          cardCourse={course.courseName} 
+          cardStrength={course.strength} 
+          cardFaculty={course.faculty}
+          cardPractical={course.practicals}
+          cardTutorial={course.tutorials}
+          cardLecture={course.lectures}
+          />
+      </div>
+    ))}
     <div className='flex flex-row gap-5'>
     <button className='bg-green-700 px-6 py-2 rounded-md shadow-md my-6 font-medium' 
-    
+    onClick={handleCalculateTotalIndex}
     >Calculate</button> 
+
     <button className='bg-gray-600 px-6 py-2 rounded-md shadow-md my-6 font-medium' 
     onClick={handleAddCourse} 
     >Add Course</button>
+
     <button className='bg-gray-600 px-6 py-2 rounded-md shadow-md my-6 font-medium' 
     >Save</button>
     </div>

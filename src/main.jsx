@@ -15,6 +15,8 @@ import { UserContextprovider } from './components/Context/AuthContext';
 import ProtectedRoute from './components/Firebase/protectedRoutes';
 import { LoadContextprovider } from './components/Context/LoadContext';
 
+
+// Creating different routes for the navigation of the website
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,7 +24,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element:<Signup/> 
+        element:<ProtectedRoute><HomePage/> </ProtectedRoute>
       },
       {
         path: "/signup",

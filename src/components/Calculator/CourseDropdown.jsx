@@ -1,21 +1,49 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import courseData from "../Database/courseData";
 import Select from 'react-select';
 
 
-function CourseDropdown({lable ="",course,setCourse,setlecture,setTutorial,setPractical,setSelfStudy,setCredits}) {
+function CourseDropdown({lable ="",course,courseCode,setCourse,setlecture,setTutorial,setPractical,setSelfStudy,setCredits,setCourseCode}) {
 
 const settingCourse = (selectedOption)=>{
   setCourse(selectedOption.label)
+  setCourseCode(selectedOption.value)
   setlecture(selectedOption.lecture)
   setPractical(selectedOption.practical)
   setTutorial(selectedOption.tutorial)
-  setSelfStudy(selectedOption.selfStudy)
-  setCredits(selectedOption.credits)
+  // setSelfStudy(selectedOption.selfStudy)
+  // setCredits(selectedOption.credits)
   // console.log(selectedOption.lecture)
   // console.log(selectedOption.ltpse)
 
 }
+ 
+const runDefault = ()=>
+{
+  let dataIndex = 0;
+  for(let i =0; i <courseData.length;i++){
+    if(courseData[i].label===course){
+      dataIndex = i
+      console.log(dataIndex)
+    }
+  }
+
+  return dataIndex
+}
+
+// useEffect(()=>
+//     {
+      
+//       for(let i =0; i <courseData.length;i++){
+//       if(courseData[i].label===course){
+//         dataIndex = i
+//         console.log(dataIndex)
+//       }
+//     }})
+
+
+// const defaultCourse =  courseData.filter((obj)=>(obj.label === course))
+
 
 const defaultAY = courseData[Number(courseData.length)-1]
 
@@ -31,7 +59,8 @@ const defaultAY = courseData[Number(courseData.length)-1]
         
         onChange={settingCourse}
         options={courseData}
-        placeholder="Select Course"
+        defaultValue = {courseData[runDefault()]}
+        
         styles={{  
           control: (baseStyles, state) => ({
             ...baseStyles,
