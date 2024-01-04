@@ -1,6 +1,6 @@
 import React from 'react'
 
-function NumberSetter({label="",number = 25, setNumber}) {
+function NumberSetter({label="",number, setNumber}) {
 
     // I need to do implement some filter so that only number inputs are given to the strenght field
     const settingNumber = (e)=>{

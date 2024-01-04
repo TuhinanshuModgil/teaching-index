@@ -3,7 +3,7 @@ import CourseDropdown from './CourseDropdown';
 import NumberSetter from './NumberSetter';
 import { useLoad } from '../Context/LoadContext';
 
-function CourseCard({cardID, cardAcademicYear, cardStrength, cardFaculty, cardCourse,cardLecture=10101, cardTutorial=10101, cardPractical=10101}) {
+function CourseCard({cardID, cardAcademicYear, cardStrength=25, cardFaculty=1, cardCourse,cardLecture=0, cardTutorial=0, cardPractical=0}) {
   // Now each card has access to the id of the which was assigned to it
   // with this id it should know which course it belongs to
   
@@ -27,23 +27,24 @@ function CourseCard({cardID, cardAcademicYear, cardStrength, cardFaculty, cardCo
     const courseLoad = (lecture*1 + tutorial*0.5 + practical*0.5 + courseStrength*0.01)/(faculty)
   
     updateCourse(cardID,{
-      cardID,
+      id:cardID,
+      courseName: course,
       AY: cardAcademicYear,
       lectures: lecture,
       tutorials: tutorial,
       practicals: practical,
       strength: courseStrength,
-      faculty,
+      faculty:faculty,
       teachingLoad: courseLoad
 
 
     })
   },
-  [course,lecture,tutorial,practical,courseStrength,faculty])
+  [course,lecture,tutorial,practical,courseStrength,faculty,cardAcademicYear])
   
 
   return (
-    <div className='bg-gray-800 w-1/2 rounded-lg '>
+    <div className='bg-gray-800 w-1/2 rounded-lg my-5'>
        <CourseDropdown 
     lable='Course' 
     course={course}
@@ -53,7 +54,7 @@ function CourseCard({cardID, cardAcademicYear, cardStrength, cardFaculty, cardCo
     setPractical={setPractical}
     setCourseCode = {setCourseCode}
     />
-    
+    <h1 className='bg-black font-bold'>{cardID}</h1>
     <NumberSetter label='Strength' number={courseStrength} setNumber={setCourseStrength}/>
     <NumberSetter label='Faculty' number={faculty} setNumber={setFaculty} />
     </div>

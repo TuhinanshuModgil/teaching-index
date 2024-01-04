@@ -10,11 +10,26 @@ export const LoadContextprovider = ({children})=>{
     const [courses, setCourses] = useState([])
     
     const addCourses = (course)=>{
-        setCourses((prev)=>([{id: Date.now(),...course},...prev]))
+        console.log("yo")
+        setCourses((prev)=>([
+            {id: Date.now(),
+             AY: course.AY,
+             courseName: course.courseName,
+             lectures: course.lectures,
+             tutorials: course.tutorials,
+             practicals: course.practicals,
+             strength: course.strength,
+             faculty: course.faculty,
+             teachingLoad: course.teachingLoad 
+            
+            },
+            ...prev]))
+        console.log(courses)
     } 
 
     const updateCourse = (id, course)=>{
         setCourses((prev) => prev.map((prevCourse) => (prevCourse.id === id ? course : prevCourse )))
+        console.log("ran update function")
     }
 
     const deleteCourse = (id) => {

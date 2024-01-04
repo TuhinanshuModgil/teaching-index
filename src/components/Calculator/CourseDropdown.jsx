@@ -11,6 +11,7 @@ const settingCourse = (selectedOption)=>{
   setlecture(selectedOption.lecture)
   setPractical(selectedOption.practical)
   setTutorial(selectedOption.tutorial)
+  console.log("courses set")
   // setSelfStudy(selectedOption.selfStudy)
   // setCredits(selectedOption.credits)
   // console.log(selectedOption.lecture)
