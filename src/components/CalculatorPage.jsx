@@ -10,8 +10,8 @@ function CalculatorPage() {
   const [lecture, SetLecture] = useState(1);
   const [turorial, SetTutorial] = useState(1);
   const [practical, setPractical] = useState(1);
-  const [selfStudy, setSelfStudy] = useState(1);
-  const [credits, setCredits] = useState(1);
+  // const [selfStudy, setSelfStudy] = useState(1);
+  // const [credits, setCredits] = useState(1);
   const [course, setCourse] = useState(1);
   const [acadYear, setAcadYear] = useState(currentAcadYear)
   const [courseStrength, setCourseStrength] = useState(25)
@@ -30,7 +30,7 @@ function CalculatorPage() {
    <>
    
    <div className='py-10 px-6'>
-    <h1 className='text-4xl mb-5'>Calculator</h1>
+    <h1 className='text-4xl mb-5'>Data Entry</h1>
     
     <AcademicYear lable="Academic Year" acadYear={acadYear} setAcadYear={setAcadYear}/>
     <CourseDropdown 
@@ -39,8 +39,7 @@ function CalculatorPage() {
     setlecture={SetLecture} 
     setTutorial={SetTutorial} 
     setPractical={setPractical}
-    setSelfStudy={setSelfStudy}
-    setCredits={setCredits}
+    
     />
     <NumberSetter label='Strength' number={courseStrength} setNumber={setCourseStrength}/>
     <NumberSetter label='Fuculty' number={faculty} setNumber={setFaculty} />

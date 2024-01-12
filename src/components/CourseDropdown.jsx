@@ -3,15 +3,15 @@ import courseData from "./Database/courseData";
 import Select from 'react-select';
 
 
-function CourseDropdown({lable ="",course,setCourse,setlecture,setTutorial,setPractical,setSelfStudy,setCredits}) {
+function CourseDropdown({lable ="",course,setCourse,setlecture,setTutorial,setPractical}) {
 
 const settingCourse = (selectedOption)=>{
   setCourse(selectedOption.label)
   setlecture(selectedOption.lecture)
   setPractical(selectedOption.practical)
   setTutorial(selectedOption.tutorial)
-  setSelfStudy(selectedOption.selfStudy)
-  setCredits(selectedOption.credits)
+  // setSelfStudy(selectedOption.selfStudy)
+  // setCredits(selectedOption.credits)
   // console.log(selectedOption.lecture)
   // console.log(selectedOption.ltpse)
 
