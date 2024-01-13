@@ -28,7 +28,7 @@ const defaultAY = courseData[Number(courseData.length)-1]
       {/* Select component is taken from the react-select package
       Read the documentation from the react-select on npms website to see how to operate */}
       <Select
-        defaultValue={defaultAY}
+        
         onChange={settingCourse}
         options={courseData}
         placeholder="Select Course"

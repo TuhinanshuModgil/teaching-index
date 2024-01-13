@@ -42,6 +42,7 @@ function Signup() {
       <div className='flex flex-col py-2'>
           <label className='py-2 font-medium'>Username</label>
           <input
+            required={true}
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             className='border rounded-lg p-3 text-white'

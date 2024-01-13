@@ -3,7 +3,7 @@ import AcademicYear from './AcademicYear'
 import CourseDropdown from './CourseDropdown'
 import NumberSetter from './NumberSetter'
 import { auth } from '../Firebase/firebase'
-import { addUserCorse, trialFunction1 } from '../Firebase/firestore'
+import { addCourseToUser, addUserCorse, trialFunction1 } from '../Firebase/firestore'
 import { useAuth } from '../Context/AuthContext'
 
 function CalculatorPage() {
@@ -32,7 +32,7 @@ function CalculatorPage() {
   }
 
   const saveTaughtCourse = ()=>{
-    addUserCorse({
+    addCourseToUser({
       courseName: course,
       teachingIndex,
       academicYear:acadYear
@@ -43,7 +43,7 @@ function CalculatorPage() {
   const consoleLog = ()=>{
     // const user = auth.currentUser;
     // trialFunction1()
-    console.log(user.displayName)
+    console.log(user.uid)
   }
   
   return (

@@ -7,6 +7,7 @@ import {
   updateProfile
 } from 'firebase/auth'
 import { auth } from "../Firebase/firebase";
+import { addUserToDatabase } from "../Firebase/firestore";
 
 const UserContext = createContext()
 
@@ -31,6 +32,9 @@ export const UserContextprovider = ({ children }) => {
       .then(() => {
         // Display name updated successfully
         console.log("User signed up with display name set");
+      })
+      .then(()=>{
+        addUserToDatabase()
       })
       .catch((error) => {
         // Handle errors during the signup process

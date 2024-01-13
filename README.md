@@ -20,3 +20,14 @@ Currently, two official plugins are available:
 1. The component uses the react-select to create a dropdown menu to choose the academic year
 2. It takes the alreay setted academic year and the setAcademic year as its props to be able to change the academic year when a new academic year is selected
 
+# User Sign up
+At the time of the sign up the user fills a username a pass and an email. These information can later be changed 
+
+
+# Featues To Implement
+## Changing Username and pasword and email
+Create a profile section that will be under the currently displayed username
+that will allow the functionality to change the usename and all
+
+## Creating the user in database as soom as he sign ups
+Attach a function to .then in sign up so that the user is registered in the database itself
