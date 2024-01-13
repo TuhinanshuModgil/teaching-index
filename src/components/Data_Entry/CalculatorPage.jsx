@@ -2,29 +2,49 @@ import { useState } from 'react'
 import AcademicYear from './AcademicYear'
 import CourseDropdown from './CourseDropdown'
 import NumberSetter from './NumberSetter'
+import { auth } from '../Firebase/firebase'
+import { addUserCorse, trialFunction1 } from '../Firebase/firestore'
+import { useAuth } from '../Context/AuthContext'
 
 function CalculatorPage() {
   const currentAcadYear = "AY 2023 Sem II"
 
   // stating all the variables on which the formula dependends
-  const [lecture, SetLecture] = useState(1);
-  const [turorial, SetTutorial] = useState(1);
-  const [practical, setPractical] = useState(1);
-  // const [selfStudy, setSelfStudy] = useState(1);
-  // const [credits, setCredits] = useState(1);
-  const [course, setCourse] = useState(1);
   const [acadYear, setAcadYear] = useState(currentAcadYear)
+  const [lecture, setLecture] = useState(1);
+  const [turorial, setTutorial] = useState(1);
+  const [practical, setPractical] = useState(1);
   const [courseStrength, setCourseStrength] = useState(25)
   const [faculty,setFaculty] = useState(1)
+  const [course, setCourse] = useState(1);
   const [teachingIndex, setTeachingIndex] = useState(0)
-
+  // const [selfStudy, setSelfStudy] = useState(1);
+  // const [credits, setCredits] = useState(1);
+  
   // function that will run when we will click calculate
   // It contains the formula to calculate the teaching Index
+
+  const {user} = useAuth()
+
   const calculateIndex = ()=>{
     const formula = (lecture*1 + turorial*0.5 + practical*0.5 + courseStrength*0.01)/(faculty)
     setTeachingIndex(formula)
   }
 
+  const saveTaughtCourse = ()=>{
+    addUserCorse({
+      courseName: course,
+      teachingIndex,
+      academicYear:acadYear
+      
+    })
+  }
+
+  const consoleLog = ()=>{
+    // const user = auth.currentUser;
+    // trialFunction1()
+    console.log(user.displayName)
+  }
   
   return (
    <>
@@ -36,9 +56,9 @@ function CalculatorPage() {
     <CourseDropdown 
     lable='Course' 
     setCourse={setCourse} 
-    setlecture={SetLecture} 
-    setTutorial={SetTutorial} 
+    setlecture={setLecture} 
     setPractical={setPractical}
+    setTutorial={setTutorial}
     
     />
     <NumberSetter label='Strength' number={courseStrength} setNumber={setCourseStrength}/>
@@ -48,7 +68,11 @@ function CalculatorPage() {
     <button className='bg-green-700 px-6 py-2 rounded-md shadow-md my-6 font-medium' 
     onClick={calculateIndex}
     >Calculate</button> 
+    <button className='bg-green-700 px-6 py-2 rounded-md shadow-md my-6 font-medium' 
+    onClick={consoleLog}
+    >Console Log</button> 
     <button className='bg-gray-600 px-6 py-2 rounded-md shadow-md my-6 font-medium' 
+    onClick={saveTaughtCourse}
     >Save</button>
     </div>
     

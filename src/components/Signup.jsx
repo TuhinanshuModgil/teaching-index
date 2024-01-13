@@ -7,6 +7,7 @@ function Signup() {
 
   const [email, setEmail] = useState('');              
   const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('')
   const [error, setError] = useState('')
 
   const {createUser} = useAuth()
@@ -16,7 +17,7 @@ function Signup() {
     e.preventDefault();
     setError('');
     try {
-      await createUser(email, password);
+      await createUser(email, password, username);
       e.target.reset();
       navigate('/home')
     } catch (e) {
@@ -38,9 +39,19 @@ function Signup() {
           </Link>
           </p>
       <form onSubmit={createNewUser}>
+      <div className='flex flex-col py-2'>
+          <label className='py-2 font-medium'>Username</label>
+          <input
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className='border rounded-lg p-3 text-white'
+            type='text'
+            />
+        </div>
         <div className='flex flex-col py-2'>
           <label className='py-2 font-medium'>Email Address</label>
           <input
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
             className='border rounded-lg p-3 text-white'
             type='email'
@@ -49,6 +60,7 @@ function Signup() {
         <div className='flex flex-col py-2'>
           <label className='py-2 font-medium '>Password</label>
           <input
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
             className='border p-3 rounded-lg text-white'
             type='password'

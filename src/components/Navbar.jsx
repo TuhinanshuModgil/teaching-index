@@ -7,14 +7,14 @@ function Navbar() {
 
   const {logout, user} = useAuth()
 
-  const userChecker = ({children})=>{
-    if(user){
-      return <>{children}</>
-    }
-    else{
-      return <></>
-    }
-  }
+  // const userChecker = ({children})=>{
+  //   if(user){
+  //     return <>{children}</>
+  //   }
+  //   else{
+  //     return <></>
+  //   }
+  // }
 
   const navigate = useNavigate();
 
@@ -29,13 +29,15 @@ function Navbar() {
   };
   return (
    <>
-   <header className='py-6 px-6 flex justify-between items-center border-b-2 border-b-black/10 shadow-md 	'>
+   <header className='py-1 px-6 flex justify-between items-center border-b-2 border-b-black/10 shadow-md 	'>
     <div className='flex gap-8'>
 
       
-      {user?<><NavLink to={'home'}>Home</NavLink>
-      <NavLink to={'calculate'}>Calculate</NavLink>
-      <NavLink to={'dashboard'}>Dashboard</NavLink></>:<></>}
+      {user?<>
+      <NavLink to={'calculate'}>Data Entry</NavLink>
+      <NavLink to={'dashboard'}>Dashboard</NavLink>
+      <NavLink to={'home'}>Home</NavLink>
+      </>:<></>}
       
       
     </div>
@@ -45,11 +47,11 @@ function Navbar() {
       
       
        
-      {user?<></>:<><NavLink to={'login'}>Login</NavLink>
-      <NavLink to={'signup'}>Signup</NavLink></>}
+      {user?<></>:<div className='my-6 flex gap-8 items-center'><NavLink to={'login'}>Login</NavLink>
+      <NavLink to={'signup'}>Signup</NavLink></div>}
       {user?<>
       <img src={accountImage} alt="image" className='w-10 h-10 object-cover rounded-full	' />
-      <h3>Dr. Tuhinanshu</h3>
+      <h3>{user.displayName?user.displayName:"No username"}</h3>
       <button className='bg-green-700 px-6 py-2 rounded-md shadow-md my-6 font-medium' 
         onClick={handleLogout}
       >Logout</button></>:<></>}

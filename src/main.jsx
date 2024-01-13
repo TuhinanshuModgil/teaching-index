@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import './index.css'
 import Layout from './Layout';
-import CalculatorPage from './components/CalculatorPage';
+import CalculatorPage from './components/Data_Entry/CalculatorPage';
 import HomePage from './components/HomePage/HomePage';
 import Dashboard from './components/Dashboard/Dashboard';
 import Signup from './components/Signup';
@@ -21,16 +21,17 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element:<Signup/> 
+        element:<ProtectedRoute><CalculatorPage/></ProtectedRoute>
       },
       {
-        path: "/signup",
+        path: "signup",
         element:<Signup/> 
       },
       {
         path: "home",
-        element:<ProtectedRoute><HomePage/> </ProtectedRoute>
+        element:<ProtectedRoute><HomePage/></ProtectedRoute> 
       },
+      
       {
         path: "calculate",
         element: <ProtectedRoute><CalculatorPage/></ProtectedRoute>

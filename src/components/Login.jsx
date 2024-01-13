@@ -19,7 +19,7 @@ function Login() {
     try {
       await loginUser(email, password);
       e.target.reset();
-      navigate('/home')
+      navigate('/calculate')
     } catch (e) {
       setError(e.message);
       console.log(e.message);

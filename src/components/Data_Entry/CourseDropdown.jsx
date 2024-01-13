@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import courseData from "./Database/courseData";
+import courseData from "../Database/courseData";
 import Select from 'react-select';
 
 
