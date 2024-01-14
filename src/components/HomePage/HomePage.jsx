@@ -1,5 +1,5 @@
 import React from 'react'
-import UserTab from './UserTab'
+import UserTab from '../Dashboard/UserTab'
 
 function HomePage() {
   return (

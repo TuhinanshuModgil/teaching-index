@@ -13,45 +13,47 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import { UserContextprovider } from './components/Context/AuthContext';
 import ProtectedRoute from './components/Firebase/protectedRoutes';
+import { UserDatabaseContextProvider } from './components/Context/UserContext';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout/>,
+    element: <Layout />,
     children: [
       {
         path: "",
-        element:<ProtectedRoute><CalculatorPage/></ProtectedRoute>
+        element: <ProtectedRoute><CalculatorPage /></ProtectedRoute>
       },
       {
         path: "signup",
-        element:<Signup/> 
+        element: <Signup />
       },
       {
         path: "home",
-        element:<ProtectedRoute><HomePage/></ProtectedRoute> 
+        element: <ProtectedRoute><HomePage /></ProtectedRoute>
       },
-      
+
       {
         path: "calculate",
-        element: <ProtectedRoute><CalculatorPage/></ProtectedRoute>
+        element: <ProtectedRoute><CalculatorPage /></ProtectedRoute>
       },
       {
         path: "dashboard",
-        element: <ProtectedRoute><Dashboard/></ProtectedRoute>
+        element: <ProtectedRoute><Dashboard /></ProtectedRoute>
       },
       {
         path: "login",
-        element: <Login/>
+        element: <Login />
       }
     ]
-  },  
+  },
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <UserContextprovider>
-
-    <RouterProvider router={router} />
+      <UserDatabaseContextProvider>
+        <RouterProvider router={router} />
+      </UserDatabaseContextProvider>
     </UserContextprovider>
   </React.StrictMode>,
 )

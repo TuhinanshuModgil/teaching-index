@@ -23,6 +23,38 @@ Currently, two official plugins are available:
 # User Sign up
 At the time of the sign up the user fills a username a pass and an email. These information can later be changed 
 
+# FireStore Usage
+## References
+To correctly preform the required operations to the database we need to create references to the place that we want to store the data
+To create references we can use various methods 
+1. To create reference to collections
+```
+const userRef  = collection(db,"users")
+// Reference to a collection at root
+
+const userRef  = collection(db,"users", "Tuhinanshu", "hobbies")
+// Reference to a collection Hobbies inside document Tuhinanshu inside collection users
+
+```
+2. Creating references to Documents
+```
+const tuhinanshuRef  = doc(db,"users", "Tuhinanshu")
+// Reference to Tuhinahsu document inside collection users
+// You can go multilevel deep with it using same syntax as in collectons
+
+
+```
+
+## Adding Data
+Now lets see how you add data
+There are too many fucking ways to add data and each have their own usecases
+1. "addDoc" using firestore generated ID :  it takes two parameter 
+
+first is the reference to the collection that you want to add the doc to. If the collection dosent exists then its created and then the document is add
+Second argument is an object that tells the content of the document that you want to add
+
+
+
 
 # Featues To Implement
 ## Changing Username and pasword and email

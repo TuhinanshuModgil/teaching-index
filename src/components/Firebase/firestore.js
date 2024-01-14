@@ -1,6 +1,5 @@
 import { db } from "./firebase";
 import { collection, addDoc,setDoc,doc,getDocs} from "firebase/firestore"; 
-
 import { auth } from "./firebase";
 
 
