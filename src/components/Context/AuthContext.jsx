@@ -8,7 +8,7 @@ import {
 } from 'firebase/auth'
 import { auth } from "../Firebase/firebase";
 import { addUserToDatabase } from "../Firebase/firestore";
-
+console.log("loaded AuthContext")
 const UserContext = createContext()
 
 

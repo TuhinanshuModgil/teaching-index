@@ -1,10 +1,13 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import AcademicYear from './AcademicYear'
+// import { trialFunction1 } from '../Firebase/firestore';
+
 import CourseDropdown from './CourseDropdown'
 import NumberSetter from './NumberSetter'
 import { auth } from '../Firebase/firebase'
 import { addCourseToUser, addUserCorse, trialFunction1 } from '../Firebase/firestore'
 import { useAuth } from '../Context/AuthContext'
+import { useUserDatabse } from '../Context/UserContext';
 
 function CalculatorPage() {
   const currentAcadYear = "AY 2023 Sem II"
@@ -25,6 +28,7 @@ function CalculatorPage() {
   // It contains the formula to calculate the teaching Index
 
   const {user} = useAuth()
+  const{setUserTaughtCoures} = useUserDatabse()
 
   const calculateIndex = ()=>{
     const formula = (lecture*1 + turorial*0.5 + practical*0.5 + courseStrength*0.01)/(faculty)
@@ -44,7 +48,18 @@ function CalculatorPage() {
     // const user = auth.currentUser;
     // trialFunction1()
     console.log(user.uid)
+
+
   }
+
+  useEffect(()=>{
+    console.log("use E 1")
+    trialFunction1().then((res)=>{
+      setUserTaughtCoures(res)
+    })
+    .catch(e => console.log("error in setting userTaughtCourses", e))
+  },[])
+  
   
   return (
    <>
