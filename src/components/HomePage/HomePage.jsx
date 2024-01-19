@@ -6,7 +6,7 @@ import { trialFunction1 } from '../Firebase/firestore';
 import { useAuth } from '../Context/AuthContext';
 
 function HomePage() {
-  console.log("loaded haome page")
+  // console.log("loaded haome page")
 
   const { userSnapshot,userTaughtCourses,setUserTaughtCoures } = useUserDatabse();
   const {user} = useAuth()
@@ -17,7 +17,7 @@ function HomePage() {
 
   useEffect(()=>{
     setCards(userTaughtCourses)
-  },[refreshKey])
+  },[userTaughtCourses])
  
 
 
