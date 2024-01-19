@@ -2,17 +2,17 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { db,auth } from "../Firebase/firebase";
 import { collection, addDoc,setDoc,doc,getDocs} from "firebase/firestore"; 
 import { trialFunction1 } from '../Firebase/firestore';
-console.log("loaded userContext")
 const UserDatabaseContext = createContext()
 
 export const UserDatabaseContextProvider = ({children})=>{
+    console.log("loaded userContext")
 
     const user = auth.currentUser;
     const [userTaughtCourses, setUserTaughtCoures] = useState([])
 
     const [userSnapshot, setUserSnapshot] = useState([]) 
 
-    
+    console.log("user from userContext", user)
 
     useEffect(()=>{
         const userRef  = collection(db,"users")
@@ -40,12 +40,15 @@ export const UserDatabaseContextProvider = ({children})=>{
     },[])
 
     
+     
+    
+    
    
     
     
 
     return (
-        <UserDatabaseContext.Provider value={{userSnapshot,user, userTaughtCourses,setUserTaughtCoures}}>
+        <UserDatabaseContext.Provider value={{userSnapshot, userTaughtCourses,setUserTaughtCoures}}>
             {children}
         </UserDatabaseContext.Provider>
     )

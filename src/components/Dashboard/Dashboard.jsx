@@ -4,6 +4,7 @@ import { useUserDatabse } from '../Context/UserContext'
 
 
 function Dashboard() {
+  console.log("loaded Dashboard")
 
   const { userSnapshot } = useUserDatabse()
   console.log(userSnapshot)

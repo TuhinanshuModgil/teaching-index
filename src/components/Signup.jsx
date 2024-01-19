@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import { UserContextprovider, useAuth } from './Context/AuthContext';
+console.log("loaded signup")
 
 
 function Signup() {

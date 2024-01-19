@@ -1,10 +1,26 @@
 import React from 'react'
+import { deleteCourseTaught, trialFunction1 } from '../Firebase/firestore';
+import { useUserDatabse } from '../Context/UserContext'
 
-const UserTaughtCourseCard = ({ courseName="", academicYear="", load="" }) => {
+console.log("loaded user taught course card")
+
+
+const UserTaughtCourseCard = ({ courseName="", academicYear="", load="", docid="" }) => {
     
-    
+    const {setUserTaughtCoures} = useUserDatabse();
     const onDelete = ()=>{
-        console.log("tried to delete")
+        deleteCourseTaught(docid).then(()=>{
+          trialFunction1().then((res)=>{
+            setUserTaughtCoures(res)
+            
+
+          })
+          .catch(e => console.log("error in setting userTaughtCourses", e))
+        }
+
+        )
+
+
     }
     return (
       <div className="  w-[500px] bg-slate-800 rounded overflow-hidden shadow-lg">

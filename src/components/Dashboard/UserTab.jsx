@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import accountImage from '../../assets/SL.png'
 import { useAuth } from '../Context/AuthContext'
+console.log("loaded userTab")
 
 
 function UserTab({username}) {

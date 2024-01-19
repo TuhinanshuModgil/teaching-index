@@ -4,6 +4,7 @@ import {Outlet} from 'react-router-dom'
 
 
 function Layout() {
+  console.log("loaded layout")
   
   return (
    <>

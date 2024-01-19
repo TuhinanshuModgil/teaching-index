@@ -8,12 +8,12 @@ import {
 } from 'firebase/auth'
 import { auth } from "../Firebase/firebase";
 import { addUserToDatabase } from "../Firebase/firestore";
-console.log("loaded AuthContext")
 const UserContext = createContext()
 
 
 export const UserContextprovider = ({ children }) => {
-
+  
+  console.log("loaded AuthContext")
   const [user, setUser] = useState()
   
 
@@ -45,6 +45,7 @@ export const UserContextprovider = ({ children }) => {
   const logout = () => (signOut(auth))
 
   useEffect(() => {
+    console.log("AuthContext UE ran")
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log(currentUser);
       setUser(currentUser);

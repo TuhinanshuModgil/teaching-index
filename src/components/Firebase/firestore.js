@@ -1,21 +1,20 @@
 import { db } from "./firebase";
-import { collection, addDoc,setDoc,doc,getDocs} from "firebase/firestore"; 
+import { collection, addDoc,setDoc,doc,getDocs, deleteDoc} from "firebase/firestore"; 
 import { auth } from "./firebase";
 
 
 
-console.log("loaded firestore")
 // a function that can add to the taught courses collection
 export const addUserCorse = async (taughtCourse)=>{
-    const user = auth.currentUser;
+  const user = auth.currentUser;
     try {
-        const docRef = await addDoc(collection(db, "taught-courses"), {
-          uid: user.uid,
+      const docRef = await addDoc(collection(db, "taught-courses"), {
+        uid: user.uid,
           courseName: taughtCourse.courseName, 
           teachingIndex: taughtCourse.teachingIndex,
           academicYear: taughtCourse.academicYear
-
-
+          
+          
 
         });
         console.log("Document written with ID: ", docRef.id);
@@ -34,35 +33,70 @@ export const addCourseToUser = async (taughtCourse)=>{
         teachingIndex: taughtCourse.teachingIndex,
         academicYear: taughtCourse.academicYear
 
-
-
+        
+        
       });
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
-}
+  }
+
+  export const addCourseToUser1 = async (taughtCourse)=>{
+    const user = auth.currentUser;
+    try {
+        const newDocRef = doc(collection(db, "users", user.uid,"courses-taught"));
+        console.log("new Doc REF: ", newDocRef.id)
+        const data = {
+          uid: user.uid,
+          docid: newDocRef.id,
+          courseName: taughtCourse.courseName, 
+          teachingIndex: taughtCourse.teachingIndex,
+          academicYear: taughtCourse.academicYear
+  
+          
+          
+        }
+        const docRef = await setDoc(newDocRef, data)
+        console.log("Document written with ID: ", docRef.id);
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
+    }
 
 
+  export const deleteCourseTaught = async(docid)=>{
+    const user = auth.currentUser;
 
-// this function can be used to create a collection {if it dosent already exists} 
+    try {
+      await deleteDoc(doc(db, "users",user.uid,"courses-taught", docid));
+      console.log("succesfully deleted")
+      
+    } catch (error) {
+      console.log("error in deletion: ",error )
+    }
+  }
+
+
+  
+  // this function can be used to create a collection {if it dosent already exists} 
 // and then a document {if that doc dosent already exists} inside that collection 
 // and then add the given data inside that object
 export const trialFunction = async ()=>{
   const user = auth.currentUser;
   try {
-      const docRef = await setDoc(doc(db, "cities", "LA"), {
-        name: "Los Angeles",
-        state: "CA",
-        country: "India"
-      });
+    const docRef = await setDoc(doc(db, "cities", "LA"), {
+      name: "Los Angeles",
+      state: "CA",
+      country: "India"
+    });
       // console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
-}
-
-
+  }
+  
+  
 // This function will be used to add the user inside the databse 
 // when the user first sign ups 
 // it will also add a created at and the userName filed inside the user data
@@ -71,30 +105,38 @@ export const addUserToDatabase = async ()=>{
   const user = auth.currentUser;
   
   try {
-      const docRef = await setDoc(doc(db, "users", user.uid), {
-        createdat: Date.now(),
+    const docRef = await setDoc(doc(db, "users", user.uid), {
+      createdat: Date.now(),
         userName: user.displayName
       });
       // console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
-}
-
-
-// This function gets a snapshot of the collection that is mentioned in it
-// This can be used to displat information from database
-export const trialFunction1 = async ()=>{
-  const user = auth.currentUser;
+  }
+  
+  
+  // This function gets a snapshot of the collection that is mentioned in it
+  // This can be used to displat information from database
+  export const trialFunction1 = async ()=>{
+  let user;
+  try {
+    user = await auth.currentUser;
+  } catch (error) {
+    console.log("error in Trial 1", error)
+  }
+  
   const userTaughtCourses = [];
   console.log("trial fun 1: ", user)
+  console.log("Type of user from trial 1",typeof(user))
+  
   try {
 
       
-      getDocs(collection(db, "users",user.uid, "courses-taught"))
-      .then((snapshots)=>{
-
-        snapshots.forEach((doc) => {
+    getDocs(collection(db, "users",user.uid, "courses-taught"))
+    .then((snapshots)=>{
+      
+      snapshots.forEach((doc) => {
           // doc.data() is never undefined for query doc snapshots
           userTaughtCourses.push(doc.data())
           // console.log(doc.id, " => ", doc.data());
@@ -105,9 +147,11 @@ export const trialFunction1 = async ()=>{
     } catch (e) {
       console.error("Error adding document: ", e);
     }
-
+    
     return userTaughtCourses
-}
+  }
+  
+  
 
-
-
+  
+  console.log("loaded firestore")

@@ -1,4 +1,5 @@
 import React from 'react'
+console.log("loaded number setter")
 
 function NumberSetter({label="",number = 25, setNumber}) {
 

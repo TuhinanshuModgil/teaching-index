@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import courseData from "../Database/courseData";
 import Select from 'react-select';
 
+console.log("loaded courseDropdown")
 
 function CourseDropdown({lable ="",course,setCourse,setlecture,setTutorial,setPractical}) {
 

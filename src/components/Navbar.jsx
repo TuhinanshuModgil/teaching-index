@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from './Context/AuthContext'
 
 function Navbar() {
+  console.log("loaded navbar")
 
   const {logout, user} = useAuth()
 

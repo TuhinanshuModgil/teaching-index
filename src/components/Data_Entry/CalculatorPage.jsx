@@ -5,11 +5,12 @@ import AcademicYear from './AcademicYear'
 import CourseDropdown from './CourseDropdown'
 import NumberSetter from './NumberSetter'
 import { auth } from '../Firebase/firebase'
-import { addCourseToUser, addUserCorse, trialFunction1 } from '../Firebase/firestore'
+import { addCourseToUser, addCourseToUser1, addUserCorse, trialFunction1 } from '../Firebase/firestore'
 import { useAuth } from '../Context/AuthContext'
 import { useUserDatabse } from '../Context/UserContext';
 
 function CalculatorPage() {
+  console.log("loaded calculator page")
   const currentAcadYear = "AY 2023 Sem II"
 
   // stating all the variables on which the formula dependends
@@ -36,13 +37,22 @@ function CalculatorPage() {
   }
 
   const saveTaughtCourse = ()=>{
-    addCourseToUser({
+    addCourseToUser1({
       courseName: course,
       teachingIndex,
       academicYear:acadYear
       
     })
   }
+  useEffect(()=>{
+    console.log("use E 1")
+    trialFunction1().then((res)=>{
+      setUserTaughtCoures(res)
+      
+      
+    })
+    .catch(e => console.log("error in setting userTaughtCourses", e))
+  },[user])
 
   const consoleLog = ()=>{
     // const user = auth.currentUser;
@@ -51,14 +61,8 @@ function CalculatorPage() {
 
 
   }
-
-  useEffect(()=>{
-    console.log("use E 1")
-    trialFunction1().then((res)=>{
-      setUserTaughtCoures(res)
-    })
-    .catch(e => console.log("error in setting userTaughtCourses", e))
-  },[])
+  
+  
   
   
   return (

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import array from "../Database/ayData";
 import Select from 'react-select';
+console.log("loaded academicYear")
 
 
 function AcademicYear({lable ="",acadYear,setAcadYear}) {
