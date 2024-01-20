@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import accountImage from '../../assets/SL.png'
 import { useAuth } from '../Context/AuthContext'
-console.log("loaded userTab")
+// console.log("loaded userTab")
 
 
 function UserTab({username}) {
@@ -42,7 +42,7 @@ function UserTab({username}) {
     <>
 
 
-      <div className="bg-white p-4 rounded-md shadow-md w-full flex items-center h-24 ">
+      <div className="bg-white p-4 rounded-md shadow-md w-full flex items-center h-14 ">
         <input type="checkbox" checked={userSelected} onChange={handleUserSelected} />
         <div className='px-3 '>
           <h2 className="text-xl font-bold mb-2 text-gray-700 leading-snug">{username}</h2>

@@ -9,10 +9,9 @@ export const UserDatabaseContextProvider = ({ children }) => {
 
     const user = auth.currentUser;
     const [userTaughtCourses, setUserTaughtCoures] = useState([])
-
     const [userSnapshot, setUserSnapshot] = useState([])
 
-    console.log("user from userContext", user)
+    // console.log("user from userContext", user)
 
     useEffect(() => {
         const userRef = collection(db, "users")
@@ -51,7 +50,7 @@ export const UserDatabaseContextProvider = ({ children }) => {
                     tempUserTaughtCourses.push(doc.data());
                 });
                 setUserTaughtCoures(tempUserTaughtCourses)
-                console.log("SNAPSHOT: ", querySnapshot);
+                // console.log("SNAPSHOT: ", querySnapshot);
             });
 
             return unsubscribe

@@ -127,8 +127,8 @@ export const addUserToDatabase = async ()=>{
   }
   
   const userTaughtCourses = [];
-  console.log("trial fun 1: ", user)
-  console.log("Type of user from trial 1",typeof(user))
+  // console.log("trial fun 1: ", user)
+  // console.log("Type of user from trial 1",typeof(user))
   
   try {
 
@@ -154,4 +154,4 @@ export const addUserToDatabase = async ()=>{
   
 
   
-  console.log("loaded firestore")
+  // console.log("loaded firestore")

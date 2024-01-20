@@ -28,4 +28,4 @@ const db = getFirestore(app);
 export default app
 export {db}
 
-console.log("loaded firebase")
+// console.log("loaded firebase")

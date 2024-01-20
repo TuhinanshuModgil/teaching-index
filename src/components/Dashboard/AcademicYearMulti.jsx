@@ -4,7 +4,7 @@ import Select from 'react-select';
 // console.log("loaded academicYear")
 
 
-function AcademicYear({lable ="",acadYear,setAcadYear, multiple = false}) {
+function AcademicYearMulti({lable ="",acadYear,setAcadYear, multiple = false}) {
 
 // the Data for the academic year is taken from the array in the acadmeicYear.js file
 // I will try to move it to the backend once the database is set up
@@ -14,7 +14,15 @@ function AcademicYear({lable ="",acadYear,setAcadYear, multiple = false}) {
 // hence to be able to change the stage we can use that object to extract the value and then pass
 // it to our use state hook's function
 const settingAcadYear = (selectedOption)=>{
-  setAcadYear(selectedOption.label)
+  console.log("These Are Selected Options: ",selectedOption)
+
+  // Clearing the setted academic years 
+  setAcadYear([])
+  selectedOption.forEach(element => {
+
+    setAcadYear(prev=> [...prev,element.label])
+  });
+  
   // console.log(selectedOption.ltpse)
 
 }
@@ -30,10 +38,10 @@ const defaultAY = array[Number(array.length)-1]
       {/* Select component is taken from the react-select package
       Read the documentation from the react-select on npms website to see how to operate */}
       <Select
-        defaultValue={defaultAY}
+        // defaultValue={defaultAY}
         onChange={settingAcadYear}
         options={array}
-        
+        isMulti
         placeholder="Select Academic year"
         styles={{
           control: (baseStyles, state) => ({
@@ -63,7 +71,7 @@ const defaultAY = array[Number(array.length)-1]
   )
 }
 
-export default AcademicYear
+export default AcademicYearMulti
 
 // -----My previous meathod to take input----
 // {/* <input type="text" name="city" list="cityname" className='p-2 flex items-center' />

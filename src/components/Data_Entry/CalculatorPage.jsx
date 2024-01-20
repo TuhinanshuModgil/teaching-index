@@ -10,7 +10,7 @@ import { useAuth } from '../Context/AuthContext'
 import { useUserDatabse } from '../Context/UserContext';
 
 function CalculatorPage() {
-  console.log("loaded calculator page")
+  // console.log("loaded calculator page")
   const currentAcadYear = "AY 2023 Sem II"
 
   // stating all the variables on which the formula dependends
@@ -37,6 +37,9 @@ function CalculatorPage() {
   }
 
   const saveTaughtCourse = ()=>{
+
+
+    calculateIndex();
     addCourseToUser1({
       courseName: course,
       teachingIndex,

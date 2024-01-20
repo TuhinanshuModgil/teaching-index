@@ -2,7 +2,7 @@ import React from 'react'
 import { deleteCourseTaught, trialFunction1 } from '../Firebase/firestore';
 import { useUserDatabse } from '../Context/UserContext'
 
-console.log("loaded user taught course card")
+// console.log("loaded user taught course card")
 
 
 const UserTaughtCourseCard = ({ courseName="", academicYear="", load="", docid="" }) => {
@@ -10,12 +10,7 @@ const UserTaughtCourseCard = ({ courseName="", academicYear="", load="", docid="
     const {setUserTaughtCoures} = useUserDatabse();
     const onDelete = ()=>{
         deleteCourseTaught(docid).then(()=>{
-          trialFunction1().then((res)=>{
-            setUserTaughtCoures(res)
-            
-
-          })
-          .catch(e => console.log("error in setting userTaughtCourses", e))
+          console.log("successfully DELETED!!!")
         }
 
         )
