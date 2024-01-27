@@ -15,6 +15,7 @@ function AcademicYear({lable ="",acadYear,setAcadYear, multiple = false}) {
 // it to our use state hook's function
 const settingAcadYear = (selectedOption)=>{
   setAcadYear(selectedOption.label)
+  console.log(selectedOption.label)
   // console.log(selectedOption.ltpse)
 
 }

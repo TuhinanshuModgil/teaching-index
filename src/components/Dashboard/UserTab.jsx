@@ -34,6 +34,7 @@ function UserTab({username, setSelectedUsers}) {
   // console.log("This is userSnap: ", username)
 
   const addUserToSelected = ()=>{
+    console.log( {name: username.userName, uid: username.uid})
     setSelectedUsers(prev => [...prev, {name: username.userName, uid: username.uid}])
     console.log("ran to this 1")
 
