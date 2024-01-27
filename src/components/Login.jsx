@@ -33,7 +33,7 @@ function Login() {
       <h1 className='text-2xl font-bold py-2'>Login to your account</h1>
       <p className='py-2'>
           Don't have an account yet?{' '}
-          <Link to='/' className='underline'>
+          <Link to='/signup' className='underline'>
             Sign up.
           </Link>
           </p>

@@ -42,6 +42,16 @@ export const addCourseToUser = async (taughtCourse)=>{
     }
   }
 
+export const fetchDataOfCourses = async(username, academicYears)=>{
+  
+  const userColRef = collection(db, "users", user.uid,"courses-taught");
+
+
+}
+
+
+
+
   export const addCourseToUser1 = async (taughtCourse)=>{
     const user = auth.currentUser;
     try {
@@ -107,7 +117,8 @@ export const addUserToDatabase = async ()=>{
   try {
     const docRef = await setDoc(doc(db, "users", user.uid), {
       createdat: Date.now(),
-        userName: user.displayName
+      userName: user.displayName,
+      uid: user.uid
       });
       // console.log("Document written with ID: ", docRef.id);
     } catch (e) {

@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import accountImage from '../../assets/SL.png'
 import { useAuth } from '../Context/AuthContext'
 // console.log("loaded userTab")
 
 
-function UserTab({username}) {
+function UserTab({username, setSelectedUsers}) {
   // component 1
   // <div className="bg-white p-6 rounded-md shadow-md">
   //   <img
@@ -31,12 +31,34 @@ function UserTab({username}) {
 
   // </div>
   const [userSelected, setUserSelected] = useState(false)
+  // console.log("This is userSnap: ", username)
+
+  const addUserToSelected = ()=>{
+    setSelectedUsers(prev => [...prev, {name: username.userName, uid: username.uid}])
+    console.log("ran to this 1")
+
+  }
+
+  const deleteUserFromSelected = ()=>{
+    setSelectedUsers(prev => (
+      prev.filter((element => element.name !== username.userName ))
+    ))
+    console.log("ran to this 2")
+
+  }
   // const { user } = useAuth()
   const handleUserSelected = () => {
     setUserSelected(prev => !prev)
+    console.log(userSelected)
+    
     // console.log(userSelected)
     
   }
+
+  useEffect(()=>{
+    if(userSelected) addUserToSelected()
+    if(!userSelected) deleteUserFromSelected()
+  },[userSelected])
 
   return (
     <>
@@ -45,7 +67,7 @@ function UserTab({username}) {
       <div className="bg-white p-4 rounded-md shadow-md w-full flex items-center h-14 ">
         <input type="checkbox" checked={userSelected} onChange={handleUserSelected} />
         <div className='px-3 '>
-          <h2 className="text-xl font-bold mb-2 text-gray-700 leading-snug">{username}</h2>
+          <h2 className="text-xl font-bold mb-2 text-gray-700 leading-snug">{username.userName}</h2>
           {/* <p className="text-gray-600 mb-2 leading-snug">{user && user.email}</p>
         <p className="text-gray-700">User Load: {"3.5"}</p> */}
         </div>

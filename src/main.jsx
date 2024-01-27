@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <ProtectedRoute><CalculatorPage /></ProtectedRoute>
+        element: <ProtectedRoute><Dashboard /></ProtectedRoute>
       },
       {
         path: "signup",
