@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import courseData from "../Database/courseData";
 import Select from 'react-select';
 
-console.log("loaded courseDropdown")
+// console.log("loaded courseDropdown")
 
 function CourseDropdown({lable ="",course,setCourse,setlecture,setTutorial,setPractical}) {
 
 const settingCourse = (selectedOption)=>{
+  console.log("This is selected option", selectedOption)
   setCourse(selectedOption.label)
   setlecture(selectedOption.lecture)
   setPractical(selectedOption.practical)
@@ -17,6 +18,7 @@ const settingCourse = (selectedOption)=>{
   // console.log(selectedOption.ltpse)
 
 }
+
 
 const defaultAY = courseData[Number(courseData.length)-1]
 
@@ -29,7 +31,7 @@ const defaultAY = courseData[Number(courseData.length)-1]
       {/* Select component is taken from the react-select package
       Read the documentation from the react-select on npms website to see how to operate */}
       <Select
-        
+        value={course}
         onChange={settingCourse}
         options={courseData}
         placeholder="Select Course"

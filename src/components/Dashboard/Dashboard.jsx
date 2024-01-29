@@ -88,7 +88,7 @@ function Dashboard() {
           <AcademicYearMulti setAcadYear={setQueryAcadYears} />
           {userSnapshot.map((userSnap) => {
             // console.log(userSnap)
-            return (<div key={userSnap.createdat} className='mx-2'>
+            return (<div key={userSnap.createdat} className='mx-2 w-full'>
               <UserTab username={userSnap} setSelectedUsers={setSelectedUsers} />
             </div>)
           })}
@@ -97,10 +97,10 @@ function Dashboard() {
         <div className='w-3/4 h-full bg-slate-800 flex-col  rounded-md'>
           <div className='w-full bg-cyan-700 flex-col  flex-nowrap'>
             <div className='flex w-full flex-nowrap'>
-              <div className='max-w bg-gray-700 border-2 p-3 flex-1 min-w-28'>
+              <div className='max-w bg-gray-700 border-2 p-3 flex-1 min-w-16'>
                 Name
               </div>
-              <div className='w-[700px] bg-gray-700 p-3 border-2'>
+              <div className='w-[750px] bg-gray-700 p-3 border-2'>
                 Courses
               </div>
               <div className='w-[100px] bg-gray-700 p-3 border-2'>
@@ -113,10 +113,10 @@ function Dashboard() {
 
               <div className='flex w-full flex-nowrap' key={index}>
 
-                <div className='w-[100px] bg-gray-700 border-2 p-3 flex-1 min-w-28'>
+                <div className='w-[100px] bg-gray-700 border-2 p-3 flex-1 min-w-16'>
                   {i.name}
                 </div>
-                <div className='w-[700px] bg-gray-700 p-3 border-2'>
+                <div className='w-[750px] bg-gray-700 p-3 border-2'>
                   {i.courses.map((course, index1) => (
                     <h1 key={index1 * 2}>{course.courseName}:  {course.academicYear
                     } <br /></h1>

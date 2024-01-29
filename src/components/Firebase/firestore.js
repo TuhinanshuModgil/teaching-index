@@ -4,6 +4,7 @@ import { auth } from "./firebase";
 
 
 
+
 // a function that can add to the taught courses collection
 export const addUserCorse = async (taughtCourse) => {
   const user = auth.currentUser;
@@ -36,9 +37,11 @@ export const addCourseToUser = async (taughtCourse) => {
 
 
     });
-    console.log("Document written with ID: ", docRef.id);
+    // console.log("Document written with ID: ", docRef.id);
+    
   } catch (e) {
     console.error("Error adding document: ", e);
+    return false;
   }
 }
 
@@ -80,10 +83,14 @@ export const addCourseToUser1 = async (taughtCourse) => {
 
 
     }
+
     const docRef = await setDoc(newDocRef, data)
-    console.log("Document written with ID: ", docRef.id);
+
+    return true;
+    // console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
+    return false;
   }
 }
 

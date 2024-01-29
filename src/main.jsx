@@ -14,7 +14,7 @@ import Login from './components/Login';
 import { UserContextprovider } from './components/Context/AuthContext';
 import ProtectedRoute from './components/Firebase/protectedRoutes';
 import { UserDatabaseContextProvider } from './components/Context/UserContext';
-console.log("loaded main")
+// console.log("loaded main")
 
 const router = createBrowserRouter([
   {

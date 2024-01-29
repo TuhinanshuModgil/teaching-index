@@ -65,7 +65,7 @@ function UserTab({username, setSelectedUsers}) {
     <>
 
 
-      <div className="bg-white p-4 rounded-md shadow-md w-full flex items-center h-14 ">
+      <div className="bg-white p-4 rounded-md shadow-md flex  items-center h-14 ">
         <input type="checkbox" checked={userSelected} onChange={handleUserSelected} />
         <div className='px-3 '>
           <h2 className="text-xl font-bold mb-2 text-gray-700 leading-snug">{username.userName}</h2>

@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import { useAuth } from './Context/AuthContext';
 
-console.log("loaded login")
+// console.log("loaded login")
 
 
 function Login() {
