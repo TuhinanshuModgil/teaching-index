@@ -38,16 +38,18 @@ function CalculatorPage() {
 
   const calculateIndex = () => {
     const formula = (lecture * 1 + turorial * 0.5 + practical * 0.5 + courseStrength * 0.01) / (faculty)
-    setTeachingIndex(formula)
+    setTeachingIndex(prev => formula)
   }
 
   const saveTaughtCourse = async() => {
 
 
     calculateIndex();
+    const formula = (lecture * 1 + turorial * 0.5 + practical * 0.5 + courseStrength * 0.01) / (faculty)
+    console.log("calculated index: ", teachingIndex)
     const courseAdded = await addCourseToUser1({
       courseName: course,
-      teachingIndex,
+      teachingIndex: formula,
       academicYear: acadYear
 
     })
@@ -58,9 +60,14 @@ function CalculatorPage() {
       setDisplayMoodleSuccess(1)
       setTimeout(()=>{
         setDisplayMoodleSuccess(0)
-      },3000 )
+      },2000 )
       // reset the form
       setCourse("")
+      setFaculty(1)
+      setCourseStrength(25)
+      setTeachingIndex(0)
+
+
 
 
 
@@ -125,9 +132,9 @@ function CalculatorPage() {
           <button className='bg-green-700 px-6 py-2 rounded-md shadow-md my-6 font-medium'
             onClick={calculateIndex}
           >Calculate</button>
-          <button className='bg-green-700 px-6 py-2 rounded-md shadow-md my-6 font-medium'
+          {/* <button className='bg-green-700 px-6 py-2 rounded-md shadow-md my-6 font-medium'
             onClick={()=>console.log(course)}
-          >Console Log</button>
+          >Console Log</button> */}
           <button className='bg-gray-600 px-6 py-2 rounded-md shadow-md my-6 font-medium'
             onClick={saveTaughtCourse}
           >Save</button>

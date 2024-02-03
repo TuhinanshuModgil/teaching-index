@@ -35,8 +35,8 @@ function Navbar() {
       
       {user?<>
       <NavLink to={'calculate'}>Data Entry</NavLink>
+      <NavLink to={'myCourse'}>My Course</NavLink>
       <NavLink to={'dashboard'}>Dashboard</NavLink>
-      <NavLink to={'home'}>Home</NavLink>
       </>:<></>}
       
       
