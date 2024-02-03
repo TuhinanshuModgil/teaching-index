@@ -6,8 +6,10 @@ import { useUserDatabse } from '../Context/UserContext'
 import AcademicYearMulti from './AcademicYearMulti'
 import { fetchDataOfCourses } from '../Firebase/firestore'
 import array from '../Database/ayData'
+import { useStateManager } from 'react-select'
 
 
+// temp teesting data
 const data1 = [
   {
     name: "Sarang Gumphekar",
@@ -20,17 +22,12 @@ function Dashboard() {
   // console.log("loaded Dashboard")
 
 
-  const [data,setData] = useState([
-    {
-      name: "Sarang Gumphekar",
-      courses: [{ courseName: "CH303 XXXXX", academicYear: "AY XXXXX" }, { courseName: "CH304 XXXXX", academicYear: "AY XXXXX" }],
-      totalLoad: 10
-    }
-  ])
+  const [data, setData] = useState([])
 
   const [selectedUsers, setSelectedUsers] = useState([])
 
   const [queryAcadYears, setQueryAcadYears] = useState([])
+  const [selectAll, setSelectAll] = useState(false)
   const { userSnapshot } = useUserDatabse()
 
   const handleLoadData = () => {
@@ -38,13 +35,13 @@ function Dashboard() {
     if (selectedUsers.length) {
       setData([])
 
-      selectedUsers.forEach(async(selectedUser) => {
+      selectedUsers.forEach(async (selectedUser) => {
         // return the courses for the selected user
         const returnedCourseData = await fetchDataOfCourses(selectedUser, queryAcadYears)
-        
-        let totalLoad=0;
-        let courses=[];
 
+        let totalLoad = 0;
+        let courses = [];
+        console.log("this is retured data: " , returnedCourseData)
         returnedCourseData.forEach((doc) => {
           // doc.data() is never undefined for query doc snapshots
           console.log("this is query DATA: ")
@@ -54,15 +51,15 @@ function Dashboard() {
           console.log(doc.id, " => ", doc.data());
         });
 
-        setData(prev => [...prev,{
+        setData(prev => [...prev, {
           name: selectedUser.name,
           courses,
-          totalLoad 
+          totalLoad
         }])
 
 
       })
-    
+
     }
     else {
       console.log("no user selected")
@@ -70,9 +67,9 @@ function Dashboard() {
     }
   }
 
-    // useEffect(()=>{
-    //   console.log("rerendered using useEffect")
-    // },[data])
+  // useEffect(()=>{
+  //   console.log("rerendered using useEffect")
+  // },[data])
 
   // console.log(userSnapshot)
 
@@ -89,9 +86,13 @@ function Dashboard() {
           {userSnapshot.map((userSnap) => {
             // console.log(userSnap)
             return (<div key={userSnap.createdat} className='mx-2 w-full'>
-              <UserTab username={userSnap} setSelectedUsers={setSelectedUsers} />
+              <UserTab username={userSnap} setSelectedUsers={setSelectedUsers} selectAll={selectAll} />
             </div>)
           })}
+          <button className='bg-green-700 px-6 py-2 rounded-md h-10 shadow-md my-6 font-medium'
+            onClick={() => setSelectAll(true)}
+          >{selectAll?"Deselect All":"Select All"}</button>
+
 
         </div>
         <div className='w-3/4 h-full bg-slate-800 flex-col  rounded-md'>
@@ -134,7 +135,7 @@ function Dashboard() {
           </div>
 
           <button className='bg-green-700 px-6 py-2 rounded-md h-10 shadow-md my-6 font-medium'
-            onClick={() => console.log(data)}
+            onClick={() => console.log(selectedUsers)}
           >console Log</button>
           <br />
           <button className='bg-green-700 px-6 py-2 rounded-md h-10 shadow-md my-6 font-medium'

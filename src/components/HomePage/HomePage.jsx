@@ -25,11 +25,11 @@ function HomePage() {
 
   return (
     <>
-      <div className='w-full h-screen flex-col bg-black/20 flex justify-center align-middle items-center gap-1 overflow-scroll'>
+      <div className='w-full  flex bg-black/20 flex-wrap justify-start items-center gap-2 p-2'>
         {/* <h1 className='text-white text-center p-10 w-1/4 h-1/4'>The Home Page</h1> */}
         {/* <UserTab/> */}
         
-        {refreshKey?cards.map((userCourse,i) => {
+        {cards.map((userCourse,i) => {
           console.log("tried to card")
           return (
           <div key={userCourse.docid}> 
@@ -37,12 +37,14 @@ function HomePage() {
           </div>
           )
         })
-        :"no data"
         }
         
 
        
-        <button className='bg-green-700 px-6 py-2 rounded-md h-10 shadow-md my-6 font-medium'
+        
+
+      </div>
+      {/* <button className='bg-green-700 px-6 py-2 rounded-md h-10 shadow-md my-6 font-medium'
           onClick={() => setRefreshKey(refreshKey+1)}
         >Refresh</button>
         <button className='bg-green-700 px-6 py-2 rounded-md h-10 shadow-md my-6 font-medium'
@@ -50,10 +52,8 @@ function HomePage() {
         >User Log</button>
         <button className='bg-green-700 px-6 py-2 rounded-md h-10 shadow-md my-6 font-medium'
           onClick={() => console.log("this is Cards ", cards)}
-        >Cards Log</button>
+        >Cards Log</button> */}
 
-
-      </div>
     </>
   )
 }

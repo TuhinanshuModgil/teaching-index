@@ -4,7 +4,7 @@ import { useAuth } from '../Context/AuthContext'
 // console.log("loaded userTab")
 
 
-function UserTab({username, setSelectedUsers}) {
+function UserTab({username, setSelectedUsers, selectAll}) {
   // component 1
   // <div className="bg-white p-6 rounded-md shadow-md">
   //   <img
@@ -31,8 +31,10 @@ function UserTab({username, setSelectedUsers}) {
 
   // </div>
   const [userSelected, setUserSelected] = useState(false)
+
   // console.log("This is userSnap: ", username)
 
+  
   const addUserToSelected = ()=>{
     console.log( {name: username.userName, uid: username.uid})
     setSelectedUsers(prev => [...prev, {name: username.userName, uid: username.uid}])
@@ -55,10 +57,11 @@ function UserTab({username, setSelectedUsers}) {
     // console.log(userSelected)
     
   }
+  
 
   useEffect(()=>{
     if(userSelected) addUserToSelected()
-    if(!userSelected) deleteUserFromSelected()
+    if(!userSelected ) deleteUserFromSelected()
   },[userSelected])
 
   return (
@@ -66,7 +69,7 @@ function UserTab({username, setSelectedUsers}) {
 
 
       <div className="bg-white p-4 rounded-md shadow-md flex  items-center h-14 ">
-        <input type="checkbox" checked={userSelected} onChange={handleUserSelected} />
+        <input type="checkbox" checked={userSelected||selectAll} onChange={handleUserSelected} />
         <div className='px-3 '>
           <h2 className="text-xl font-bold mb-2 text-gray-700 leading-snug">{username.userName}</h2>
           {/* <p className="text-gray-600 mb-2 leading-snug">{user && user.email}</p>

@@ -8,6 +8,7 @@ function CourseDropdown({lable ="",course,setCourse,setlecture,setTutorial,setPr
 
 const settingCourse = (selectedOption)=>{
   console.log("This is selected option", selectedOption)
+
   setCourse(selectedOption.label)
   setlecture(selectedOption.lecture)
   setPractical(selectedOption.practical)
@@ -18,6 +19,10 @@ const settingCourse = (selectedOption)=>{
   // console.log(selectedOption.ltpse)
 
 }
+
+useEffect(()=>{
+console.log("Rerendered")
+},[course])
 
 
 const defaultAY = courseData[Number(courseData.length)-1]
@@ -31,7 +36,9 @@ const defaultAY = courseData[Number(courseData.length)-1]
       {/* Select component is taken from the react-select package
       Read the documentation from the react-select on npms website to see how to operate */}
       <Select
-        value={course}
+        value={courseData.filter(function(option) {
+          return option.label === course;
+        })}
         onChange={settingCourse}
         options={courseData}
         placeholder="Select Course"
