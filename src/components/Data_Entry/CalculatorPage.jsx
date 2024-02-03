@@ -13,7 +13,7 @@ import { useUserDatabse } from '../Context/UserContext';
 
 function CalculatorPage() {
   // console.log("loaded calculator page")
-  const currentAcadYear = "2023-2024 Sem 2 Jan-May 24"
+  const currentAcadYear = "2023-2024 Sem 2, Jan-May 24"
 
   // stating all the variables on which the formula dependends
   const [acadYear, setAcadYear] = useState(currentAcadYear)
