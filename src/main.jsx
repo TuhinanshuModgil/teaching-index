@@ -14,6 +14,7 @@ import Login from './components/Login';
 import { UserContextprovider } from './components/Context/AuthContext';
 import ProtectedRoute from './components/Firebase/protectedRoutes';
 import { UserDatabaseContextProvider } from './components/Context/UserContext';
+import UserProfile from './components/UserProfile/UserProfile';
 // console.log("loaded main")
 
 const router = createBrowserRouter([
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />
+      },
+      {
+        path: "user_profile",
+        element: <ProtectedRoute><UserProfile/></ProtectedRoute>
       }
     ]
   },

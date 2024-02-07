@@ -6,6 +6,7 @@ function Navbar() {
   // console.log("loaded navbar")
 
   const {logout, user} = useAuth()
+  
 
   // const userChecker = ({children})=>{
   //   if(user){
@@ -51,7 +52,7 @@ function Navbar() {
       <NavLink to={'signup'}>Signup</NavLink></div>}
       {user?<>
       
-      <h3>{user.displayName?user.displayName:"No username"}</h3>
+      <h3 onClick={()=>navigate('/user_profile')} className='cursor-pointer'>{user.displayName?user.displayName:"No username"}</h3>
       <button className='bg-green-700 px-6 py-2 rounded-md shadow-md my-6 font-medium' 
         onClick={handleLogout}
       >Logout</button></>:<></>}

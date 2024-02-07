@@ -4,10 +4,12 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  updateProfile
+  updateProfile,
+  updatePassword
 } from 'firebase/auth'
 import { auth } from "../Firebase/firebase";
 import { addUserToDatabase } from "../Firebase/firestore";
+
 const UserContext = createContext()
 
 
@@ -15,6 +17,18 @@ export const UserContextprovider = ({ children }) => {
   
   console.log("loaded AuthContext")
   const [user, setUser] = useState()
+
+
+  const updateUserPassword = (newPassword)=>{
+    updatePassword(user, newPassword).then(() => {
+      console.log("Succes fully changed pwd")
+    }).catch((error) => {
+      
+      console.log("error occured while changing pwd: ", error.message)
+    });
+    
+  }
+
   
 
   const createUser = (email, password, userName) => (
@@ -57,7 +71,7 @@ export const UserContextprovider = ({ children }) => {
 
 
   return (
-    <UserContext.Provider value={{ createUser, loginUser, logout, user }}>
+    <UserContext.Provider value={{ createUser, loginUser, logout, user, updateUserPassword }}>
       {children}
     </UserContext.Provider>
   )

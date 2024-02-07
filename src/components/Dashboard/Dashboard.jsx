@@ -41,7 +41,7 @@ function Dashboard() {
 
         let totalLoad = 0;
         let courses = [];
-        console.log("this is retured data: " , returnedCourseData)
+        console.log("this is retured data: ", returnedCourseData)
         returnedCourseData.forEach((doc) => {
           // doc.data() is never undefined for query doc snapshots
           console.log("this is query DATA: ")
@@ -91,7 +91,7 @@ function Dashboard() {
           })}
           <button className='bg-green-700 px-6 py-2 rounded-md h-10 shadow-md my-6 font-medium'
             onClick={() => setSelectAll(true)}
-          >{selectAll?"Deselect All":"Select All"}</button>
+          >{selectAll ? "Deselect All" : "Select All"}</button>
 
 
         </div>
@@ -109,7 +109,6 @@ function Dashboard() {
               </div>
             </div>
 
-
             {data.map((i, index) => (
 
               <div className='flex w-full flex-nowrap' key={index}>
@@ -117,11 +116,24 @@ function Dashboard() {
                 <div className='w-[100px] bg-gray-700 border-2 p-3 flex-1 min-w-16'>
                   {i.name}
                 </div>
-                <div className='w-[750px] bg-gray-700 p-3 border-2'>
-                  {i.courses.map((course, index1) => (
-                    <h1 key={index1 * 2}>{course.courseName}:  {course.academicYear
-                    } <br /></h1>
-                  ))}
+                <div className='w-[750px] bg-gray-700 border-2'>
+
+                  {i.courses.map((course,index1)=>(<div className='flex'>
+
+                    <div className='w-[400px] p-2'>
+                      
+                        <h1 key={index1 * 2}>{course.courseName}</h1>
+                      
+                    </div>
+
+                    <div className='flex-1 p-2'>
+                      
+                        <h1 key={index1 * 2}> {course.academicYear} </h1>
+                      
+                    </div>
+
+                  </div>))}
+                  <br />
 
                 </div>
                 <div className='w-[100px] bg-gray-700 p-3 border-2'>
