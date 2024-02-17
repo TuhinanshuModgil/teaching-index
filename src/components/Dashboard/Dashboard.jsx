@@ -80,7 +80,7 @@ function Dashboard() {
       <div className='w-full h-screen bg-black/20 flex justify-center align-middle items-center p-2 gap-2'>
 
 
-        <div className='w-1/4 h-full bg-slate-800 flex rounded-md md:w-96 lg:w-80 xl:w-96 flex-col gap-4 items-center'>
+        <div className='w-1/4 h-full bg-gray-800 flex rounded-md md:w-96 lg:w-80 xl:w-96 flex-col gap-4 items-center overflow-scroll'>
 
           <AcademicYearMulti setAcadYear={setQueryAcadYears} />
           {userSnapshot.map((userSnap) => {
@@ -89,13 +89,18 @@ function Dashboard() {
               <UserTab username={userSnap} setSelectedUsers={setSelectedUsers} selectAll={selectAll} />
             </div>)
           })}
-          <button className='bg-green-700 px-6 py-2 rounded-md h-10 shadow-md my-6 font-medium'
+          {/* <button className='bg-green-700 px-6 py-2 rounded-md h-10 shadow-md my-6 font-medium'
             onClick={() => setSelectAll(true)}
-          >{selectAll ? "Deselect All" : "Select All"}</button>
+          >{selectAll ? "Deselect All" : "Select All"}</button> */}
+
+          
 
 
         </div>
-        <div className='w-3/4 h-full bg-slate-800 flex-col  rounded-md'>
+        <div className='w-3/4 h-full bg-gray-800 flex-col  rounded-md'>
+        <button className='bg-blue-400 px-6 py-2 mx-4 rounded-md h-10 shadow-md my-6 font-medium'
+            onClick={() => handleLoadData()}
+          >Load Data</button>
           <div className='w-full bg-cyan-700 flex-col  flex-nowrap'>
             <div className='flex w-full flex-nowrap'>
               <div className='max-w bg-gray-700 border-2 p-3 flex-1 min-w-16'>
@@ -118,18 +123,18 @@ function Dashboard() {
                 </div>
                 <div className='w-[750px] bg-gray-700 border-2'>
 
-                  {i.courses.map((course,index1)=>(<div className='flex'>
+                  {i.courses.map((course, index1) => (<div className='flex'>
 
                     <div className='w-[400px] p-2'>
-                      
-                        <h1 key={index1 * 2}>{course.courseName}</h1>
-                      
+
+                      <h1 key={index1 * 2}>{course.courseName}</h1>
+
                     </div>
 
                     <div className='flex-1 p-2'>
-                      
-                        <h1 key={index1 * 2}> {course.academicYear} </h1>
-                      
+
+                      <h1 key={index1 * 2}> {course.academicYear} </h1>
+
                     </div>
 
                   </div>))}
@@ -146,13 +151,11 @@ function Dashboard() {
 
           </div>
 
-          <button className='bg-green-700 px-6 py-2 rounded-md h-10 shadow-md my-6 font-medium'
+          {/* <button className='bg-green-700 px-6 py-2 rounded-md h-10 shadow-md my-6 font-medium'
             onClick={() => console.log(selectedUsers)}
-          >console Log</button>
+          >console Log</button> */}
           <br />
-          <button className='bg-green-700 px-6 py-2 rounded-md h-10 shadow-md my-6 font-medium'
-            onClick={() => handleLoadData()}
-          >Load Data</button>
+
         </div>
 
       </div>

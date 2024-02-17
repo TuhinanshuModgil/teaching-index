@@ -45,7 +45,7 @@ const UserTaughtCourseCard = ({ courseName = "", academicYear = "", load = "", d
         <br />
         <p className="text-gray-100 text-base mb-3">Academic Year: {academicYear}</p>
 
-        <p className="text-gray-100 text-base">Load: {load}</p>
+        {/* <p className="text-gray-100 text-base">Load: {load}</p> */}
       </div>
     </div>
   );

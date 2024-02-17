@@ -20,7 +20,7 @@ function Signup() {
     try {
       await createUser(email, password, username);
       e.target.reset();
-      navigate('/home')
+      navigate('/dashboard')
     } catch (e) {
       setError(e.message);
       console.log(e.message);
