@@ -7,15 +7,20 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import CourseDropdown from './CourseDropdown'
 import NumberSetter from './NumberSetter'
 import { auth } from '../Firebase/firebase'
-import { addCourseToUser, addCourseToUser1, addUserCorse, trialFunction1 } from '../Firebase/firestore'
+import { addCourseToUser, addCourseToUser1, addUserCorse, trialFunction1, adminTest, addCourseToUser2 } from '../Firebase/firestore'
 import { useAuth } from '../Context/AuthContext'
 import { useUserDatabse } from '../Context/UserContext';
+import UserDropdown from './UserDropdown'
 
 function CalculatorPage() {
   // console.log("loaded calculator page")
-  const currentAcadYear = "2023-2024 Sem 2, Jan-May 24"
+  const currentAcadYear = "2023-2024, Sem 2, Jan-May 24"
 
   // stating all the variables on which the formula dependends
+  const [displayMoodle, setDisplayMoodle] = useState(0)
+  const [isUserAdmin, setIsUserAdmin] = useState(0)
+  const [userSelectComponent, setUserSelectComponet] = useState(null)
+  
   const [acadYear, setAcadYear] = useState(currentAcadYear)
   const [lecture, setLecture] = useState(1);
   const [turorial, setTutorial] = useState(1);
@@ -24,7 +29,6 @@ function CalculatorPage() {
   const [faculty, setFaculty] = useState(1)
   const [course, setCourse] = useState(null);
   const [teachingIndex, setTeachingIndex] = useState(0)
-  const [displayMoodle, setDisplayMoodle] = useState(0)
   // const [displayMoodleFailure, setDisplayMoodleFailure] = useState(0)
   // const [selfStudy, setSelfStudy] = useState(1);
   // const [credits, setCredits] = useState(1);
@@ -36,6 +40,8 @@ function CalculatorPage() {
   const { setUserTaughtCoures } = useUserDatabse()
   const navigate = useNavigate();
 
+
+  
   const calculateIndex = () => {
     if(!course){
       setDisplayMoodle(3)
@@ -49,7 +55,9 @@ function CalculatorPage() {
   }
 
   const saveTaughtCourse = async () => {
-
+    
+   if(userSelectComponent){
+    console.log("went to this block")
     try {
 
       if (!course) {
@@ -62,10 +70,13 @@ function CalculatorPage() {
       calculateIndex();
       const formula = (lecture * 1 + turorial * 0.5 + practical * 0.5 + courseStrength * 0.01) / (faculty)
       console.log("calculated index: ", teachingIndex)
-      const courseAdded = await addCourseToUser1({
+
+
+      const courseAdded = await addCourseToUser2({
         courseName: course,
         teachingIndex: formula,
-        academicYear: acadYear
+        academicYear: acadYear,
+        forUser:userSelectComponent
 
       })
 
@@ -99,16 +110,83 @@ function CalculatorPage() {
     } catch (error) {
       console.log("Some error in saving the course: ", error.message)
       console.log("Failed to add course")
-      setDisplayMoodleFailure(1)
+      setDisplayMoodle(2)
       setTimeout(() => {
-        setDisplayMoodleFailure(0)
+        setDisplayMoodle(2)
       }, 3000)
     }
+   }
+   else{
+    try {
+
+      if (!course) {
+        setDisplayMoodle(3)
+        setTimeout(() => {
+          setDisplayMoodle(0)
+        }, 3000)
+        return
+      }
+      calculateIndex();
+      const formula = (lecture * 1 + turorial * 0.5 + practical * 0.5 + courseStrength * 0.01) / (faculty)
+      console.log("calculated index: ", teachingIndex)
+
+
+      const courseAdded = await addCourseToUser1({
+        courseName: course,
+        teachingIndex: formula,
+        academicYear: acadYear,
+        forUser:userSelectComponent
+
+      })
+
+      if (courseAdded) {
+        // display course success moodle
+        console.log("Course added succesfully")
+        setDisplayMoodle(1)
+        setTimeout(() => {
+          setDisplayMoodle(0)
+        }, 2000)
+        // reset the form
+        setCourse(null)
+        setFaculty(1)
+        setCourseStrength(25)
+        setTeachingIndex(0)
+
+
+
+
+
+      }
+      else {
+        // display course failure moodle
+        console.log("Failed to add course")
+        setDisplayMoodle(2)
+        setTimeout(() => {
+          setDisplayMoodle(0)
+        }, 3000)
+      }
+
+    } catch (error) {
+      console.log("Some error in saving the course: ", error.message)
+      console.log("Failed to add course")
+      setDisplayMoodle(2)
+      setTimeout(() => {
+        setDisplayMoodle(2)
+      }, 3000)
+    }
+   }
     // I need to calculate course two times because the teachingIndex is not updating fast enough
 
 
   }
   useEffect(() => {
+
+    adminTest()
+    .then((res)=>{
+      setIsUserAdmin(res)
+    })
+    
+
     console.log("use E 1")
     trialFunction1().then((res) => {
       setUserTaughtCoures(res)
@@ -141,7 +219,7 @@ function CalculatorPage() {
         {displayMoodle ===1? <div className='w-full h-9 rounded-lg bg-green-500 flex items-center text-gray-800 text-lg font-bold'><h1 className='mx-auto'>Course Added Succesfully !!</h1></div> : <div></div>}
         {displayMoodle ===2? <div className='w-full h-9 rounded-lg bg-red-500 flex items-center text-gray-800 text-lg font-bold'><h1 className='mx-auto'>Opps! Something went wrong. Please try again</h1></div> : <div></div>}
         {displayMoodle ===3 ? <div className='w-full h-9 rounded-lg bg-blue-500 flex items-center text-gray-800 text-lg font-bold'><h1 className='mx-auto'>Please select a course to add</h1></div> : <div></div>}
-
+        {isUserAdmin?<UserDropdown lable="User" setUser={setUserSelectComponet} />:<></>}
         <AcademicYear lable="Academic Year" acadYear={acadYear} setAcadYear={setAcadYear} />
         <CourseDropdown
           lable="Course"
@@ -160,9 +238,9 @@ function CalculatorPage() {
           <button className='bg-green-700 px-6 py-2 rounded-md shadow-md my-6 font-medium'
             onClick={calculateIndex}
           >Calculate</button>
-          {/* <button className='bg-green-700 px-6 py-2 rounded-md shadow-md my-6 font-medium'
-            onClick={()=>console.log(course)}
-          >Console Log</button> */}
+          <button className='bg-green-700 px-6 py-2 rounded-md shadow-md my-6 font-medium'
+            onClick={()=>console.log(isUserAdmin)}
+          >Console Log</button>
           <button className='bg-blue-400 px-6 py-2 rounded-md shadow-md my-6 font-medium'
             onClick={saveTaughtCourse}
           >Save</button>

@@ -20,7 +20,7 @@ const settingAcadYear = (selectedOption)=>{
 
 }
 
-const defaultAY = array[Number(array.length)-1]
+// const defaultAY = array[Number(array.length)-1]
 
   return (
    
@@ -31,7 +31,9 @@ const defaultAY = array[Number(array.length)-1]
       {/* Select component is taken from the react-select package
       Read the documentation from the react-select on npms website to see how to operate */}
       <Select
-        defaultValue={defaultAY}
+        value={array.filter(function(option) {
+          return option.label === acadYear;
+        })}
         onChange={settingAcadYear}
         options={array}
         

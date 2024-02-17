@@ -20,9 +20,9 @@ const settingCourse = (selectedOption)=>{
 
 }
 
-useEffect(()=>{
-console.log("Rerendered")
-},[course])
+// useEffect(()=>{
+// console.log("Rerendered")
+// },[course])
 
 
 const defaultAY = courseData[Number(courseData.length)-1]

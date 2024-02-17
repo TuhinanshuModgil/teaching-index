@@ -1,5 +1,5 @@
 import { db } from "./firebase";
-import { collection, addDoc, setDoc, doc, getDocs, deleteDoc, where,query } from "firebase/firestore";
+import { collection, addDoc, setDoc, doc, getDocs, deleteDoc, where,query, getDoc } from "firebase/firestore";
 import { auth } from "./firebase";
 
 
@@ -70,6 +70,7 @@ export const fetchDataOfCourses = async (username, academicYears) => {
 
 export const addCourseToUser1 = async (taughtCourse) => {
   const user = auth.currentUser;
+  
   try {
     const newDocRef = doc(collection(db, "users", user.uid, "courses-taught"));
     console.log("new Doc REF: ", newDocRef.id)
@@ -92,6 +93,61 @@ export const addCourseToUser1 = async (taughtCourse) => {
     console.error("Error adding document: ", e);
     return false;
   }
+}
+
+export const addCourseToUser2 = async (taughtCourse) => {
+
+  const userIdToUse = taughtCourse.forUser
+  console.log("This is User Id To use: ",userIdToUse)
+  
+  try {
+    const newDocRef = doc(collection(db, "users", userIdToUse.uid, "courses-taught"));
+    console.log("new Doc REF: ", newDocRef.id)
+    const data = {
+      uid: userIdToUse.uid,
+      docid: newDocRef.id,
+      courseName: taughtCourse.courseName,
+      teachingIndex: taughtCourse.teachingIndex,
+      academicYear: taughtCourse.academicYear
+
+
+
+    }
+
+    const docRef = await setDoc(newDocRef, data)
+
+    return true;
+    // console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e.message);
+    return false;
+  }
+}
+
+export const adminTest = async()=>{
+  const user = auth.currentUser;
+  try {
+    const docRef = doc(db, "admins", "admin_uids")
+    console.log(docRef)
+    const snapshot =await getDoc(docRef)
+
+    if (snapshot.exists()) {
+      // console.log("Document data:", snapshot.data());
+      // console.log("Data Type: ", typeof(snapshot.data()))
+      // console.log(user.uid)
+      const includesUserID = snapshot.data()["admin_uids"].includes(user.uid);
+      console.log("Is user ADMIN: ", includesUserID)
+      return includesUserID
+
+    } else {
+      // docSnap.data() will be undefined in this case
+      console.log("No such document!");
+    }
+
+  } catch (error) {
+    console.log("error in getting admin data: ", error.message)
+  }
+
 }
 
 

@@ -23,9 +23,7 @@ function Dashboard() {
 
 
   const [data, setData] = useState([])
-
   const [selectedUsers, setSelectedUsers] = useState([])
-
   const [queryAcadYears, setQueryAcadYears] = useState([])
   const [selectAll, setSelectAll] = useState(false)
   const { userSnapshot } = useUserDatabse()
