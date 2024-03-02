@@ -36,7 +36,7 @@ function UserDropdown({lable ="", setUser}) {
       return (
        
           <div className='flex items-center p-4'>
-          <h2 className='w-1/4 text-white'>{lable}</h2>
+          <h2 className='w-1/4 text-white/80 '>{lable}</h2>
           
     
           {/* Select component is taken from the react-select package
@@ -68,9 +68,9 @@ function UserDropdown({lable ="", setUser}) {
               },
             })}
           />
-          <button className='bg-green-700 px-6 py-2 rounded-md h-10 shadow-md my-6 font-medium'
+          {/* <button className='bg-green-700 px-6 py-2 rounded-md h-10 shadow-md my-6 font-medium'
             onClick={() => console.log(users)}
-          >console Log</button>
+          >console Log</button> */}
           
         </div>   
         

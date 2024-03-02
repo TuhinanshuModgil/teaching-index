@@ -212,8 +212,8 @@ function CalculatorPage() {
   return (
     <>
 
-      <div className='py-10 px-6'>
-        <h1 className='text-4xl mb-5'>Data Entry</h1>
+      <div className="bg-cover  bg-center bg-fixed h-screen p-16" style={{ backgroundImage: 'url("../../public/Calculator_page_gradient.jpg")' }}>
+        <h1 className='text-4xl mb-5 px-3'>Data Entry</h1>
 
 
         {displayMoodle ===1? <div className='w-full h-9 rounded-lg bg-green-500 flex items-center text-gray-800 text-lg font-bold'><h1 className='mx-auto'>Course Added Succesfully !!</h1></div> : <div></div>}
@@ -235,13 +235,15 @@ function CalculatorPage() {
         <NumberSetter label='Faculty' number={faculty} setNumber={setFaculty} />
 
         <div className='flex flex-row gap-5'>
-          <button className='bg-green-700 px-6 py-2 rounded-md shadow-md my-6 font-medium'
+          <button className='bg-button-primary px-6 py-2 rounded-md shadow-md my-6 font-medium'
             onClick={calculateIndex}
           >Calculate</button>
-          <button className='bg-green-700 px-6 py-2 rounded-md shadow-md my-6 font-medium'
+
+          {/* <button className='bg-button-secondary px-6 py-2 rounded-md shadow-md my-6 font-medium'
             onClick={()=>console.log(isUserAdmin)}
-          >Console Log</button>
-          <button className='bg-blue-400 px-6 py-2 rounded-md shadow-md my-6 font-medium'
+          >Console Log</button> */}
+
+          <button className='bg-blue-400 px-6 py-2 rounded-md shadow-lg my-6 font-medium'
             onClick={saveTaughtCourse}
           >Save</button>
         </div>

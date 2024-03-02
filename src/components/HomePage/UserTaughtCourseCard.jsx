@@ -18,7 +18,7 @@ const UserTaughtCourseCard = ({ courseName = "", academicYear = "", load = "", d
 
   }
   return (
-    <div className="  w-[500px] bg-slate-800 rounded overflow-hidden shadow-lg h-52">
+    <div className="  w-[500px] min-h-[100px] bg-slate-800 rounded overflow-hidden shadow-lg h-52">
       <div className="flex justify-end p-1   ">
         <button
           onClick={onDelete}

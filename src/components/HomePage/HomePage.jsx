@@ -25,7 +25,7 @@ function HomePage() {
 
   return (
     <>
-      <div className='w-full  flex bg-black/20 flex-wrap justify-start items-center gap-2 p-2'>
+      <div className='w-full h-screen bg-black/20 grid gap-2 grid-cols-3 p-2'>
         {/* <h1 className='text-white text-center p-10 w-1/4 h-1/4'>The Home Page</h1> */}
         {/* <UserTab/> */}
         
