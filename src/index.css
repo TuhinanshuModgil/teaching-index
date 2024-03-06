@@ -19,12 +19,45 @@
 
 
 
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
+*{
   box-sizing: border-box;
+  
 }
+
+/* Custom CSS */
+
+.hide-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  overflow: -moz-scrollbars-none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  width: 5px; /* Adjust the width as needed */
+}
+
+.hide-scrollbar::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+
+
+
+.color-scrollbar {
+scrollbar-width: thin;
+scrollbar-color: #26425A transparent ;
+  overflow: -moz-scrollbars-none;
+}
+
+.color-scrollbar::-webkit-scrollbar {
+  width: 5px; /* Adjust the width as needed */
+}
+
+.color-scrollbar::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+
 
 
 @media (prefers-color-scheme: light) {

@@ -14,11 +14,14 @@ const UserTaughtCourseCard = ({ courseName = "", academicYear = "", load = "", d
     }
 
     )
+    .catch((error)=>{
+      console.log("not able to delete the course: ", error)
+    })
 
 
   }
   return (
-    <div className="  w-[500px] min-h-[100px] bg-slate-800 rounded overflow-hidden shadow-lg h-52">
+    <div className="  w-[500px] min-h-[100px] bg-white/75 text-black/60 rounded overflow-hidden shadow-lg h-52">
       <div className="flex justify-end p-1   ">
         <button
           onClick={onDelete}
@@ -41,9 +44,9 @@ const UserTaughtCourseCard = ({ courseName = "", academicYear = "", load = "", d
         </button>
       </div>
       <div className="px-6 py-4">
-        <div className="text-gray-100 font-bold text-xl mb-2 h-9">Course Name: {courseName}</div>
+        <div className="text-black/70 font-bold text-xl mb-2 h-9">Course Name: {courseName}</div>
         <br />
-        <p className="text-gray-100 text-base mb-3">Academic Year: {academicYear}</p>
+        <p className="text-base mb-3">Academic Year: {academicYear}</p>
 
         {/* <p className="text-gray-100 text-base">Load: {load}</p> */}
       </div>

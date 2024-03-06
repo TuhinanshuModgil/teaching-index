@@ -4,7 +4,7 @@ import { auth } from "./firebase";
 
 
 
-
+// LEGACY
 // a function that can add to the taught courses collection
 export const addUserCorse = async (taughtCourse) => {
   const user = auth.currentUser;
@@ -24,7 +24,8 @@ export const addUserCorse = async (taughtCourse) => {
   }
 }
 
-
+//LEGACY
+// ---------------Function to add courses to the current user database------------------
 export const addCourseToUser = async (taughtCourse) => {
   const user = auth.currentUser;
   try {
@@ -45,6 +46,7 @@ export const addCourseToUser = async (taughtCourse) => {
   }
 }
 
+// -------------- Function that returns the courses of the given user in a given array of academic year-------------
 export const fetchDataOfCourses = async (username, academicYears) => {
 
   const userColRef = collection(db, "users", username.uid, "courses-taught");
@@ -58,7 +60,7 @@ export const fetchDataOfCourses = async (username, academicYears) => {
 
     return querySnapshot
   } catch (error) {
-    console.log("Erro in fetching course data from query", error)
+    console.log("Error in fetching course data from query", error)
   }
 
 
@@ -67,7 +69,7 @@ export const fetchDataOfCourses = async (username, academicYears) => {
 
 
 
-
+//-------------------Function to add courses to the current user database (Now also stores its own ID)------------------
 export const addCourseToUser1 = async (taughtCourse) => {
   const user = auth.currentUser;
   
@@ -95,6 +97,8 @@ export const addCourseToUser1 = async (taughtCourse) => {
   }
 }
 
+
+// ----------------Function to add courses to any user by ADMIN --------------------
 export const addCourseToUser2 = async (taughtCourse) => {
 
   const userIdToUse = taughtCourse.forUser
@@ -124,6 +128,8 @@ export const addCourseToUser2 = async (taughtCourse) => {
   }
 }
 
+
+// -----------------------Function to test if a given user is ADMIN-------------------
 export const adminTest = async()=>{
   const user = auth.currentUser;
   try {
@@ -150,12 +156,24 @@ export const adminTest = async()=>{
 
 }
 
-
+// --------------Function to delete a course data from the current user------------------------
 export const deleteCourseTaught = async (docid) => {
   const user = auth.currentUser;
 
   try {
     await deleteDoc(doc(db, "users", user.uid, "courses-taught", docid));
+    console.log("succesfully deleted")
+
+  } catch (error) {
+    console.log("error in deletion: ", error)
+  }
+}
+
+export const adminDeleteCourseTaught = async (data) => {
+  
+
+  try {
+    await deleteDoc(doc(db, "users", data.uid, "courses-taught", data.docid));
     console.log("succesfully deleted")
 
   } catch (error) {

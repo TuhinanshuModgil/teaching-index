@@ -31,9 +31,9 @@ const defaultAY = array[Number(array.length)-1]
 
   return (
    
-      <div className='flex items-center p-4'>
-      <h2 className='w-1/4'>{lable}</h2>
+      <div className='flex-col items-center p-4'>
       
+      <h1>Select Academic Year</h1>
 
       {/* Select component is taken from the react-select package
       Read the documentation from the react-select on npms website to see how to operate */}
@@ -60,7 +60,7 @@ const defaultAY = array[Number(array.length)-1]
           borderRadius: 0,
           colors: {
             ...theme.colors,
-            primary25: 'green',
+            primary25: 'lightblue',
             primary: 'black',
           },
         })}

@@ -4,7 +4,7 @@ import { useTable } from "react-table"
 import { useUserDatabse } from '../Context/UserContext'
 // import AcademicYear from '../Data_Entry/AcademicYear'
 import AcademicYearMulti from './AcademicYearMulti'
-import { fetchDataOfCourses } from '../Firebase/firestore'
+import { fetchDataOfCourses, adminTest, adminDeleteCourseTaught } from '../Firebase/firestore'
 import array from '../Database/ayData'
 import { useStateManager } from 'react-select'
 
@@ -26,10 +26,13 @@ function Dashboard() {
   const [selectedUsers, setSelectedUsers] = useState([])
   const [queryAcadYears, setQueryAcadYears] = useState([])
   const [selectAll, setSelectAll] = useState(false)
+  const [isUserAdmin, setIsUserAdmin] = useState(0)
+
   const { userSnapshot } = useUserDatabse()
 
-  const handleLoadData = () => {
 
+  const handleLoadData = () => {
+    setData([])
     if (selectedUsers.length) {
       setData([])
 
@@ -65,6 +68,38 @@ function Dashboard() {
     }
   }
 
+  const onDelete = (data) => {
+
+    if(isUserAdmin){
+      adminDeleteCourseTaught(data).then(() => {
+        console.log("successfully DELETED!!!")
+        handleLoadData()
+  
+      }
+  
+      )
+      .catch((error)=>{
+        console.log("not able to delete the course: ", error)
+      })
+    }
+    else{
+      console.log("Display moodle for you are not admin")
+    }
+    
+
+
+  }
+
+
+  useEffect(() => {
+
+    adminTest()
+      .then((res) => {
+        setIsUserAdmin(res)
+      })
+      .catch(e => console.log("error in checking admin", e))
+  }, [])
+
   // useEffect(()=>{
   //   console.log("rerendered using useEffect")
   // },[data])
@@ -75,36 +110,48 @@ function Dashboard() {
     <>
 
 
-      <div className='w-full h-screen bg-black/20 flex justify-center align-middle items-center p-2 gap-2'>
+      <div className='h-full bg-transparent grid grid-cols-12 p-2 gap-2 bg-cover bg-center bg-fixed ' style={{ backgroundImage: 'url("../../public/Dashboard_page_gradient.jpg")' }}>
 
 
-        <div className='w-1/4 h-full bg-gray-800 flex rounded-md md:w-96 lg:w-80 xl:w-96 flex-col gap-4 items-center overflow-scroll'>
+        <div className=' bg-opacity-50 h-full rounded-md gap-4 flex flex-col col-span-3'>
 
           <AcademicYearMulti setAcadYear={setQueryAcadYears} />
-          {userSnapshot.map((userSnap) => {
-            // console.log(userSnap)
-            return (<div key={userSnap.createdat} className='mx-2 w-full'>
-              <UserTab username={userSnap} setSelectedUsers={setSelectedUsers} selectAll={selectAll} />
-            </div>)
-          })}
+          <div className='flex flex-col h-[585px] color-scrollbar overflow-scroll'>
+
+            {userSnapshot.map((userSnap) => {
+              // console.log(userSnap)
+              return (<div key={userSnap.createdat} className='mx-2 my-1'>
+                <UserTab username={userSnap} setSelectedUsers={setSelectedUsers} selectAll={selectAll} />
+              </div>)
+            })}
+          </div>
           {/* <button className='bg-green-700 px-6 py-2 rounded-md h-10 shadow-md my-6 font-medium'
             onClick={() => setSelectAll(true)}
           >{selectAll ? "Deselect All" : "Select All"}</button> */}
 
-          
+
 
 
         </div>
-        <div className='w-3/4 h-full bg-gray-800 flex-col  rounded-md'>
-        <button className='bg-blue-400 px-6 py-2 mx-4 rounded-md h-10 shadow-md my-6 font-medium'
+
+
+        <div className='bg-transparent col-span-9 rounded-md h-[750px] color-scrollbar overflow-scroll' >
+          <button className='bg-blue-400 px-6 py-2 mx-4 rounded-md h-10 shadow-md my-6 font-medium'
             onClick={() => handleLoadData()}
           >Load Data</button>
+
+          <button className='bg-button-primary px-6 py-2 rounded-md h-10 shadow-md my-6 font-medium'
+            onClick={() => setSelectAll(prev => !prev)}
+          >{selectAll ? "Deselect All" : "Select All"}</button>
+
+
+
           <div className='w-full bg-cyan-700 flex-col  flex-nowrap'>
             <div className='flex w-full flex-nowrap'>
               <div className='max-w bg-gray-700 border-2 p-3 flex-1 min-w-16'>
                 Name
               </div>
-              <div className='w-[750px] bg-gray-700 p-3 border-2'>
+              <div className='w-[700px] bg-gray-700 p-3 border-2'>
                 Courses
               </div>
               <div className='w-[100px] bg-gray-700 p-3 border-2'>
@@ -116,12 +163,12 @@ function Dashboard() {
 
               <div className='flex w-full flex-nowrap' key={index}>
 
-                <div className='w-[100px] bg-gray-700 border-2 p-3 flex-1 min-w-16'>
+                <div className='w-[100px] bg-gray-700 bg-opacity-25  border-2 p-3 flex-1 min-w-16'>
                   {i.name}
                 </div>
-                <div className='w-[750px] bg-gray-700 border-2'>
+                <div className='w-[700px] bg-gray-700 bg-opacity-25  border-2'>
 
-                  {i.courses.map((course, index1) => (<div className='flex'>
+                  {i.courses.map((course, index1) => (<div key={index1 * 2} className='flex  outline-2 outline-lime-400'>
 
                     <div className='w-[400px] p-2'>
 
@@ -135,11 +182,35 @@ function Dashboard() {
 
                     </div>
 
+                    <button
+                      className="text-red-900 hover:text-red-700 focus:outline-none flex align-top p-2 "
+                      onClick={()=>{
+                        onDelete({uid: course.uid, docid: course.docid})
+
+                      
+                      }}
+                    >
+                      <svg
+                        className="h-6 w-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
+
                   </div>))}
                   <br />
 
                 </div>
-                <div className='w-[100px] bg-gray-700 p-3 border-2'>
+                <div className='w-[100px] bg-gray-700 bg-opacity-25  p-3 border-2'>
                   {i.totalLoad}
                 </div>
 
@@ -157,6 +228,8 @@ function Dashboard() {
         </div>
 
       </div>
+
+
     </>
   )
 }

@@ -25,7 +25,7 @@ function HomePage() {
 
   return (
     <>
-      <div className='w-full h-screen bg-black/20 grid gap-2 grid-cols-3 p-2'>
+      <div className='w-full h-screen bg-cover  bg-center bg-fixed grid gap-2 grid-cols-3 p-2' style={{ backgroundImage: 'url("../../public/Dashboard_page_gradient.jpg")' }}>
         {/* <h1 className='text-white text-center p-10 w-1/4 h-1/4'>The Home Page</h1> */}
         {/* <UserTab/> */}
         

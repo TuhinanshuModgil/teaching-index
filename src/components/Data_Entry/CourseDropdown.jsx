@@ -59,7 +59,7 @@ const defaultAY = courseData[Number(courseData.length)-1]
           borderRadius: 0,
           colors: {
             ...theme.colors,
-            primary25: 'green',
+            primary25: 'lightblue',
             primary: 'black',
           },
         })}

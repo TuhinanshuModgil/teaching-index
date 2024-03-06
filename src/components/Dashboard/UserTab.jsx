@@ -44,7 +44,7 @@ function UserTab({username, setSelectedUsers, selectAll}) {
 
   const deleteUserFromSelected = ()=>{
     setSelectedUsers(prev => (
-      prev.filter((element => element.name !== username.userName ))
+      prev.filter((element => element.uid !== username.uid ))
     ))
     console.log("ran to this 2")
 
@@ -64,12 +64,14 @@ function UserTab({username, setSelectedUsers, selectAll}) {
     if(!userSelected ) deleteUserFromSelected()
   },[userSelected])
 
+
+
   return (
     <>
 
 
-      <div className="bg-white p-4 rounded-md shadow-md flex  items-center h-14 ">
-        <input type="checkbox" checked={userSelected||selectAll} onChange={handleUserSelected} />
+      <div className="bg-white p-4 rounded-md shadow-md flex items-center h-14 cursor-pointer" onClick={handleUserSelected}>
+        <input type="checkbox" checked={userSelected} onChange={handleUserSelected} />
         <div className='px-3 '>
           <h2 className="text-xl font-bold mb-2 text-gray-700 leading-snug">{username.userName}</h2>
           {/* <p className="text-gray-600 mb-2 leading-snug">{user && user.email}</p>

@@ -9,9 +9,11 @@ function Layout() {
   return (
    <>
    
+   <div className='h-screen w-screen flex flex-col overflow-hidden' >
    <Navbar/>
     <Outlet/>
-   
+
+   </div>
    </>
   )
 }

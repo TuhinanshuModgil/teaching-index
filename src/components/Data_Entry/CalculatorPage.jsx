@@ -16,11 +16,11 @@ function CalculatorPage() {
   // console.log("loaded calculator page")
   const currentAcadYear = "2023-2024, Sem 2, Jan-May 24"
 
-  // stating all the variables on which the formula dependends
   const [displayMoodle, setDisplayMoodle] = useState(0)
   const [isUserAdmin, setIsUserAdmin] = useState(0)
   const [userSelectComponent, setUserSelectComponet] = useState(null)
   
+  // stating all the variables on which the formula dependends
   const [acadYear, setAcadYear] = useState(currentAcadYear)
   const [lecture, setLecture] = useState(1);
   const [turorial, setTutorial] = useState(1);
@@ -56,12 +56,12 @@ function CalculatorPage() {
 
   const saveTaughtCourse = async () => {
     
-   if(userSelectComponent){
+   if(isUserAdmin){
     console.log("went to this block")
     try {
 
-      if (!course) {
-        setDisplayMoodle(3)
+      if (!course || !userSelectComponent) {
+        setDisplayMoodle(4)
         setTimeout(() => {
           setDisplayMoodle(0)
         }, 3000)
@@ -212,13 +212,14 @@ function CalculatorPage() {
   return (
     <>
 
-      <div className="bg-cover  bg-center bg-fixed h-screen p-16" style={{ backgroundImage: 'url("../../public/Calculator_page_gradient.jpg")' }}>
+      <div className="bg-cover  bg-center bg-fixed h-screen p-16" style={{ backgroundImage: 'url("../../public/Dashboard_page_gradient.jpg")' }}>
         <h1 className='text-4xl mb-5 px-3'>Data Entry</h1>
 
 
         {displayMoodle ===1? <div className='w-full h-9 rounded-lg bg-green-500 flex items-center text-gray-800 text-lg font-bold'><h1 className='mx-auto'>Course Added Succesfully !!</h1></div> : <div></div>}
         {displayMoodle ===2? <div className='w-full h-9 rounded-lg bg-red-500 flex items-center text-gray-800 text-lg font-bold'><h1 className='mx-auto'>Opps! Something went wrong. Please try again</h1></div> : <div></div>}
         {displayMoodle ===3 ? <div className='w-full h-9 rounded-lg bg-blue-500 flex items-center text-gray-800 text-lg font-bold'><h1 className='mx-auto'>Please select a course to add</h1></div> : <div></div>}
+        {displayMoodle ===4 ? <div className='w-full h-9 rounded-lg bg-blue-500 flex items-center text-gray-800 text-lg font-bold'><h1 className='mx-auto'>Please select a corse or a user to add</h1></div> : <div></div>}
         {isUserAdmin?<UserDropdown lable="User" setUser={setUserSelectComponet} />:<></>}
         <AcademicYear lable="Academic Year" acadYear={acadYear} setAcadYear={setAcadYear} />
         <CourseDropdown
@@ -243,7 +244,7 @@ function CalculatorPage() {
             onClick={()=>console.log(isUserAdmin)}
           >Console Log</button> */}
 
-          <button className='bg-blue-400 px-6 py-2 rounded-md shadow-lg my-6 font-medium'
+          <button className='bg-button-secondary-hover px-6 py-2 rounded-md shadow-lg my-6 font-medium'
             onClick={saveTaughtCourse}
           >Save</button>
         </div>
