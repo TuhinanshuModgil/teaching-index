@@ -37,6 +37,9 @@ const courseData =[
     {value: "CH506", label: "CH506 Chemical Process Safety" ,lecture :3,tutorial:1, practical:0, selfStudy:5, credits:3},
     {value: "CH507", label: "CH507 Introduction to Polymer Science and Engineering" ,lecture :3,tutorial:0, practical:0, selfStudy:6, credits:3},
     {value: "CH512", label: "CH512 Machine Learning Applications for Process Engineering" ,lecture :3,tutorial:1, practical:2, selfStudy:6, credits:4},
+    {value: "GE111", label: "GE111 Introduction to Environmental Science and Engineering" ,lecture :3,tutorial:1, practical:0, selfStudy:5, credits:3},
+    {value: "GE109", label: "GE109 Introduction to Engineering Products" ,lecture :0,tutorial:0, practical:2, selfStudy:1, credits:1},
+    {value: "GE101", label: "GE101 Technology Museum Lab" ,lecture :0,tutorial:0, practical:2, selfStudy:1, credits:1},
 ]
 
 export default courseData
